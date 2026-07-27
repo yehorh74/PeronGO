@@ -1,15 +1,20 @@
 import os
+from pathlib import Path
 from urllib import response
 import flet as ft
 import requests
 from dotenv import load_dotenv
 
-try:
-    load_dotenv()
-except Exception:
-    pass
+env_path = Path(__file__).parent / ".env"
+if env_path.exists():
+    load_dotenv(dotenv_path=env_path)
+else:
+    try:
+        load_dotenv()
+    except Exception:
+        pass
 
-API_KEY = os.getenv("X-API-Key")
+API_KEY = os.getenv("X_API_Key")
 API_URL = os.getenv("PLK_API_URL", "https://pdp-api.plk-sa.pl/api/v1")
 
 def main(page: ft.Page):
@@ -21,12 +26,12 @@ def main(page: ft.Page):
 
     def fetch_data(e):
         if not API_KEY:
-            status_label.value = "Błąd: Brak klucza X-API-Key w pliku .env!"
+            status_label.value = "Błąd: Brak klucza X_API_Key w pliku .env!"
             page.update()
             return
 
         headers = {
-            "X-Api-Key": API_KEY,
+            "X_Api_Key": API_KEY,
             "Accept": "application/json"
         }
 

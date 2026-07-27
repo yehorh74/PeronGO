@@ -52,20 +52,20 @@ jobs:
           FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: flet build apk --python-version 3.12 --arch arm64-v8a -o dist/apk
+        run: flet build apk --python-version 3.12 --arch arm64-v8a --build-number ${{ github.run_number }} -o dist/apk
 
-      # 4. Budowanie podpisanego AAB (do Google Play)
+      # 4. Budowanie AAB z dynamicznym podbijaniem numeru wersji
       - name: Build Signed AAB
         env:
           FLET_ANDROID_KEYSTORE_PATH: android/app/release.keystore
           FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: flet build aab --python-version 3.12 --arch arm64-v8a -o dist/aab
+        run: flet build aab --python-version 3.12 --arch arm64-v8a --build-number ${{ github.run_number }} -o dist/aab
 
       # 5. Budowanie Web
       - name: Build Web
-        run: flet build web -o dist/web
+        run: flet build web --build-number ${{ github.run_number }} -o dist/web
 
       # 6. Wrzuć zbudowane pliki jako Artifacts
       - name: Upload Artifacts
