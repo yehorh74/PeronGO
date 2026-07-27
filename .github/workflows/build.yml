@@ -18,6 +18,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install Flet
+        run: pip install flet
+
       - name: Create android directory
         run: mkdir -p android/app
 
