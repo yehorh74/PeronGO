@@ -16,7 +16,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.14"
+          python-version: "3.12"
 
       - name: Install dependencies
         run: |
@@ -40,25 +40,25 @@ jobs:
           mkdir -p android/app
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/release.keystore
 
-      # 2. Budowanie podpisanego APK
+      # 2. Budowanie podpisanego APK z wymuszeniem Pythona 3.12
       - name: Build Signed APK
         env:
           FLET_ANDROID_KEYSTORE_PATH: android/app/release.keystore
           FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: flet build apk
+        run: flet build apk --python-version 3.12
 
-      # 3. Budowanie podpisanego AAB (do Google Play)
+      # 3. Budowanie podpisanego AAB
       - name: Build Signed AAB
         env:
           FLET_ANDROID_KEYSTORE_PATH: android/app/release.keystore
           FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: flet build aab
+        run: flet build aab --python-version 3.12
 
-      # 4. Budowanie Web (nie wymaga klucza)
+      # 4. Budowanie Web
       - name: Build Web
         run: flet build web
 
