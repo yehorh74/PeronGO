@@ -1,0 +1,36 @@
+name: Build Flet Application
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: # Pozwala uruchomić budowanie ręcznie z poziomu GitHuba
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Decode Keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/release.keystore
+        continue-on-error: true 
+
+      - name: Build Flet App (APK)
+        uses: subosito/build-flet-app@v1
+        with:
+          platform: apk
+          # flutter-build-args: '--release'
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: perongo-android
+          path: build/apk/*.apk
