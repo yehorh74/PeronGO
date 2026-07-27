@@ -33,7 +33,7 @@ def main(page: ft.Page):
         try:
             response = requests.get(f"{API_URL}/stations", headers=headers, timeout=5)
             if response.status_code == 200:
-                status_label.value = "Połączono z API PKP PLK pomyślnie!"
+                status_label.value = "Połączono z API PKP PLK pomyślnie! Test"
             else:
                 status_label.value = f"Błąd API: {response.status_code}"
         except Exception as err:
