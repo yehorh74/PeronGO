@@ -1,0 +1,19 @@
+[project]
+name = "perongo"
+version = "0.0.1"
+description = "PKP timetable and delays mobile app"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "flet>=0.22.0",
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "urllib3>=2.7.0"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.flet]
+main = "main.py"
