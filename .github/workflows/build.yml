@@ -44,23 +44,22 @@ jobs:
         run: |
           echo "X_API_KEY=${{ secrets.X_API_KEY }}" > .env
 
-      # 2. Budowanie podpisanego APK z własnym katalogiem wyjściowym
       - name: Build Signed APK
         env:
           FLET_ANDROID_KEYSTORE_PATH: android/app/release.keystore
           FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: flet build apk --python-version 3.12 --split-per-abi -o dist/apk
+        run: flet build apk --python-version 3.12 --target-arch arm64-v8a -o dist/apk
 
-      # 3. Budowanie podpisanego AAB z własnym katalogiem wyjściowym
+      # 4. Budowanie podpisanego AAB (do Google Play)
       - name: Build Signed AAB
         env:
           FLET_ANDROID_KEYSTORE_PATH: android/app/release.keystore
           FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: flet build aab --python-version 3.12 --split-per-abi -o dist/aab
+        run: flet build aab --python-version 3.12 -o dist/aab
 
       # 4. Budowanie Web z własnym katalogiem wyjściowym
       - name: Build Web
