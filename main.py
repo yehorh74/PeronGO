@@ -4,7 +4,10 @@ import flet as ft
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()
+try:
+    load_dotenv()
+except Exception:
+    pass
 
 API_KEY = os.getenv("X-API-Key")
 API_URL = os.getenv("PLK_API_URL", "https://pdp-api.plk-sa.pl/api/v1")
