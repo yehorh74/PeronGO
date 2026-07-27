@@ -34,34 +34,34 @@ jobs:
         with:
           channel: 'stable'
 
-      # 1. Bezpieczne odkodowanie pliku .keystore (z flagą -d)
+      # 1. Odkodowanie pliku .keystore z Secretów GitHuba
       - name: Decode Keystore
         run: |
           mkdir -p android/app
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/app/release.keystore
 
-      # 2. Tworzenie pliku .env z cudzysłowami (zabezpieczenie znaków specjalnych)
+      # 2. Tworzenie pliku .env (z cudzysłowami chroniącymi znaki specjalne)
       - name: Create .env file
         run: |
           echo 'X_API_KEY="${{ secrets.X_API_KEY }}"' > .env
 
-      # 3. Budowanie podpisanego APK z przekazaniem parametrów bezpośrednio w komendzie
+      # 3. Budowanie podpisanego APK przez zmienne środowiskowe Flet
       - name: Build Signed APK
-        run: |
-          flet build apk --python-version 3.12 --arch arm64-v8a -o dist/apk \
-            --keystore-path android/app/release.keystore \
-            --keystore-password "${{ secrets.KEYSTORE_PASSWORD }}" \
-            --key-alias "${{ secrets.KEY_ALIAS }}" \
-            --key-password "${{ secrets.KEY_PASSWORD }}"
+        env:
+          FLET_ANDROID_KEYSTORE_PATH: android/app/release.keystore
+          FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: flet build apk --python-version 3.12 --arch arm64-v8a -o dist/apk
 
       # 4. Budowanie podpisanego AAB (do Google Play)
       - name: Build Signed AAB
-        run: |
-          flet build aab --python-version 3.12 --arch arm64-v8a -o dist/aab \
-            --keystore-path android/app/release.keystore \
-            --keystore-password "${{ secrets.KEYSTORE_PASSWORD }}" \
-            --key-alias "${{ secrets.KEY_ALIAS }}" \
-            --key-password "${{ secrets.KEY_PASSWORD }}"
+        env:
+          FLET_ANDROID_KEYSTORE_PATH: android/app/release.keystore
+          FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: flet build aab --python-version 3.12 --arch arm64-v8a -o dist/aab
 
       # 5. Budowanie Web
       - name: Build Web
