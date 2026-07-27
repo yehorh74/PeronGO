@@ -1,4 +1,4 @@
-name: Build PeronGO (Signed APK & AAB)
+name: Build PeronGO (Signed APK & AAB & Web)
 
 on:
   push:
@@ -40,34 +40,31 @@ jobs:
           mkdir -p android/app
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/release.keystore
 
-      # 2. Budowanie podpisanego APK z wymuszeniem Pythona 3.12
+      # 2. Budowanie podpisanego APK z własnym katalogiem wyjściowym
       - name: Build Signed APK
         env:
           FLET_ANDROID_KEYSTORE_PATH: android/app/release.keystore
           FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: flet build apk --python-version 3.12
+        run: flet build apk --python-version 3.12 -o dist/apk
 
-      # 3. Budowanie podpisanego AAB
+      # 3. Budowanie podpisanego AAB z własnym katalogiem wyjściowym
       - name: Build Signed AAB
         env:
           FLET_ANDROID_KEYSTORE_PATH: android/app/release.keystore
           FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: flet build aab --python-version 3.12
+        run: flet build aab --python-version 3.12 -o dist/aab
 
-      # 4. Budowanie Web
+      # 4. Budowanie Web z własnym katalogiem wyjściowym
       - name: Build Web
-        run: flet build web
+        run: flet build web -o dist/web
 
-      # 5. Wrzuć zbudowane pliki jako Artifacts
+      # 5. Wrzuć zbudowane pliki z katalogu dist/ jako Artifacts
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: perongo-release-builds
-          path: |
-            build/apk/*.apk
-            build/aab/*.aab
-            build/web/
+          path: dist/
