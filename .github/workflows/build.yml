@@ -42,21 +42,21 @@ jobs:
 
       # 2. Budowanie podpisanego APK
       - name: Build Signed APK
-        run: |
-          flet build apk \
-            --keystore-path android/app/release.keystore \
-            --keystore-password "${{ secrets.KEYSTORE_PASSWORD }}" \
-            --key-alias "${{ secrets.KEY_ALIAS }}" \
-            --key-password "${{ secrets.KEY_PASSWORD }}"
+        env:
+          FLET_ANDROID_KEYSTORE_PATH: android/app/release.keystore
+          FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: flet build apk
 
       # 3. Budowanie podpisanego AAB (do Google Play)
       - name: Build Signed AAB
-        run: |
-          flet build aab \
-            --keystore-path android/app/release.keystore \
-            --keystore-password "${{ secrets.KEYSTORE_PASSWORD }}" \
-            --key-alias "${{ secrets.KEY_ALIAS }}" \
-            --key-password "${{ secrets.KEY_PASSWORD }}"
+        env:
+          FLET_ANDROID_KEYSTORE_PATH: android/app/release.keystore
+          FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: flet build aab
 
       # 4. Budowanie Web (nie wymaga klucza)
       - name: Build Web
