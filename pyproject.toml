@@ -8,7 +8,7 @@ version = "0.0.1"
 description = "PKP timetable and delays mobile app"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "Yehor Horin", email = "danedred@15@gmail.com" }]
+authors = [{ name = "Yehor Horin", email = "danedred15@gmail.com" }]
 
 dependencies = [
     "flet[all]",
