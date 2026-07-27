@@ -16,8 +16,13 @@ dependencies = [
     "python-dotenv",
 ]
 
+[dependency-groups]
+dev = [
+    "flet[all]==0.80.6.dev7664",
+]
+
 [tool.uv]
-prerelease = "disallow"
+prerelease = "allow"
 
 [tool.flet]
 org = "org.daned.perongo"
