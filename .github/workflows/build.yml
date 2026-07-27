@@ -24,7 +24,7 @@ jobs:
         continue-on-error: true 
 
       - name: Build Flet App (APK)
-        uses: subosito/build-flet-app@v1
+        uses: flet-dev/flet-build-action@v1
         with:
           platform: apk
           # flutter-build-args: '--release'
