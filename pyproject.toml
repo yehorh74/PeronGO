@@ -20,7 +20,7 @@ dependencies = [
 prerelease = "allow"
 
 [tool.flet]
-org = "org.daned.perongo"
+org = "org.daned"
 product = "PeronGO"
 company = "Yehor Horin"
 
