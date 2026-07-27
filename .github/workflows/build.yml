@@ -43,7 +43,7 @@ jobs:
       # 2. Tworzenie pliku .env (z cudzysłowami chroniącymi znaki specjalne)
       - name: Create .env file
         run: |
-          echo 'X_API_KEY="${{ secrets.X_API_KEY }}"' > .env
+          echo "X_API_KEY=${{ secrets.X_API_KEY }}" > .env
 
       # 3. Budowanie podpisanego APK przez zmienne środowiskowe Flet
       - name: Build Signed APK
