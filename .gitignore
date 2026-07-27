@@ -1,0 +1,9 @@
+# Zmienne środowiskowe i klucze
+.env
+*.env
+
+# Wirtualne środowisko Python
+venv/
+.venv/
+__pycache__/
+*.pyc
