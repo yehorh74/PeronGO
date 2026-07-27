@@ -3,10 +3,10 @@ name: Build Flet Application
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch: # Pozwala uruchomić budowanie ręcznie z poziomu GitHuba
+  workflow_dispatch:
 
 jobs:
-  build-android:
+  build-apk:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,19 +18,26 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Create android directory
+        run: mkdir -p android/app
+
       - name: Decode Keystore
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/release.keystore
-        continue-on-error: true 
+        continue-on-error: true
 
-      - name: Build Flet App (APK)
+      - name: Build APK
+        id: build
         uses: flet-dev/flet-build-action@v1
         with:
-          platform: apk
-          # flutter-build-args: '--release'
+          target: apk
+          runner-python-version: "3.11"
+          bundled-python-version: "3.11"
+          build-number: ${{ github.run_number }}
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: perongo-android
-          path: build/apk/*.apk
+          path: ${{ steps.build.outputs.archive-path }}
+          if-no-files-found: error
