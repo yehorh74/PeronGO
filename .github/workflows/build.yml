@@ -24,6 +24,8 @@ jobs:
       - name: Build APK
         id: build
         uses: flet-dev/flet-build-action@v1
+        env:
+          PIP_PRE: 1
         with:
           target: apk
           runner-python-version: "3.14"
