@@ -44,4 +44,4 @@ def main(page: ft.Page):
         status_label
     )
 
-ft.app(target=main)
+ft.run(main)
