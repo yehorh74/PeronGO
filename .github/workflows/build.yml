@@ -34,47 +34,48 @@ jobs:
         with:
           channel: 'stable'
 
-      # 1. Dekodujemy do katalogu głównego dokładnie tak jak w Kivy
-      - name: Prepare Keystore
+      # 1. Przygotowanie pliku Keystore z sekretu GitHuba
+      - name: Prepare Keystore File
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > release.keystore
+          mkdir -p android/app
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/app/release.keystore
 
-      # 2. Tworzymy plik .env
+      # 2. Wygenerowanie pliku key.properties bezpośrednio dla szablonu Fluttera
+      - name: Create key.properties for Flutter
+        run: |
+          cat <<EOF > android/key.properties
+          storePassword=${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword=${{ secrets.KEYSTORE_PASSWORD }}
+          keyAlias=${{ secrets.KEY_ALIAS }}
+          storeFile=app/release.keystore
+          EOF
+
+      # 3. Tworzenie pliku .env dla aplikacji
       - name: Create .env file
         run: |
           echo "X_API_KEY=${{ secrets.X_API_KEY }}" > .env
 
-      # 3. Budowanie APK z hasłami i mapowaniem jak w Kivy
+      # 4. Budowanie podpisanego APK
       - name: Build Signed APK
-        env:
-          FLET_ANDROID_KEYSTORE_PATH: release.keystore
-          FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }} # Używamy KEYSTORE_PASSWORD jak w Kivy!
         run: |
           flet build apk --python-version 3.12 --arch arm64-v8a \
             --build-version "0.0.7" \
             --build-number ${{ github.run_number }} \
             -o dist/apk
 
-      # 4. Budowanie AAB
+      # 5. Budowanie podpisanego AAB
       - name: Build Signed AAB
-        env:
-          FLET_ANDROID_KEYSTORE_PATH: release.keystore
-          FLET_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          FLET_ANDROID_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          FLET_ANDROID_KEY_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         run: |
           flet build aab --python-version 3.12 --arch arm64-v8a \
             --build-version "0.0.7" \
             --build-number ${{ github.run_number }} \
             -o dist/aab
 
-      # 5. Budowanie Web
+      # 6. Budowanie Web
       - name: Build Web
         run: flet build web --build-number ${{ github.run_number }} -o dist/web
 
-      # 6. Wrzuć pliki
+      # 7. Wrzucenie gotowych buildów
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
