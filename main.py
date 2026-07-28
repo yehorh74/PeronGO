@@ -1,56 +1,32 @@
 import os
-from pathlib import Path
 import flet as ft
-import requests
-from dotenv import load_dotenv
+from screens.home import HomeScreen
 
-env_path = Path(__file__).parent / ".env"
-if env_path.exists():
-    load_dotenv(dotenv_path=env_path)
-else:
-    try:
-        load_dotenv()
-    except Exception:
-        pass
+class App:
+    def __init__(self, page: ft.Page):
+        self.page = page
+        self.page.title = "PeronGO"
+        self.page.theme_mode = ft.ThemeMode.DARK
+        
+        self.page.on_route_change = self.route_change
+        
+        self.page.route = "/home"
+        self.route_change(None)
 
-API_KEY = os.getenv("X_API_KEY")
-API_URL = os.getenv("PLK_API_URL", "https://pdp-api.plk-sa.pl/api/v1")
+    def navigate_to(self, route_name: str):
+        self.page.route = route_name
+        self.route_change(None)
+
+    def route_change(self, e):
+        self.page.views.clear()
+
+        if self.page.route == "/home" or self.page.route == "/":
+            self.page.views.append(HomeScreen(self))
+
+        self.page.update()
 
 def main(page: ft.Page):
-    page.title = "PeronGO – Tablica odjazdów"
-    page.theme_mode = ft.ThemeMode.DARK
-    page.padding = 20
-
-    status_label = ft.Text(value="Kliknij przycisk, aby pobrać dane. Test, test", size=16)
-
-    def fetch_data(e):
-        if not API_KEY:
-            status_label.value = "Błąd: Brak klucza X_API_KEY w pliku .env!"
-            page.update()
-            return
-
-        # Poprawny nagłówek z myślnikiem "X-Api-Key"
-        headers = {
-            "X-Api-Key": API_KEY,
-            "Accept": "application/json"
-        }
-
-        try:
-            response = requests.get(f"{API_URL}/stations", headers=headers, timeout=5)
-            if response.status_code == 200:
-                status_label.value = "Połączono z API PKP PLK pomyślnie!"
-            else:
-                status_label.value = f"Błąd API: {response.status_code}"
-        except Exception as err:
-            status_label.value = f"Błąd połączenia: {err}"
-        
-        page.update()
-
-    page.add(
-        ft.Text("PeronGO", size=28, weight=ft.FontWeight.BOLD),
-        ft.ElevatedButton("Sprawdź połączenie z API", on_click=fetch_data),
-        status_label
-    )
+    App(page)
 
 if __name__ == "__main__":
-    ft.app(target=main)
+    ft.run(main)
