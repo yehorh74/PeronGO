@@ -34,48 +34,69 @@ jobs:
         with:
           channel: 'stable'
 
-      # 1. Przygotowanie pliku Keystore z sekretu GitHuba
+      # 1. Odkodowanie pliku Keystore
       - name: Prepare Keystore File
         run: |
-          mkdir -p android/app
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/app/release.keystore
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > release.keystore
 
-      # 2. Wygenerowanie pliku key.properties bezpośrednio dla szablonu Fluttera
-      - name: Create key.properties for Flutter
-        run: |
-          cat <<EOF > android/key.properties
-          storePassword=${{ secrets.KEYSTORE_PASSWORD }}
-          keyPassword=${{ secrets.KEYSTORE_PASSWORD }}
-          keyAlias=${{ secrets.KEY_ALIAS }}
-          storeFile=app/release.keystore
-          EOF
-
-      # 3. Tworzenie pliku .env dla aplikacji
+      # 2. Tworzenie pliku .env
       - name: Create .env file
         run: |
           echo "X_API_KEY=${{ secrets.X_API_KEY }}" > .env
 
-      # 4. Budowanie podpisanego APK
-      - name: Build Signed APK
+      # 3. Budowanie surowego APK przez Flet
+      - name: Build Raw APK
         run: |
           flet build apk --python-version 3.12 --arch arm64-v8a \
             --build-version "0.0.7" \
             --build-number ${{ github.run_number }} \
             -o dist/apk
 
-      # 5. Budowanie podpisanego AAB
-      - name: Build Signed AAB
+      # 4. Wymuszone podpisanie APK za pomocą apksigner z Android SDK
+      - name: Sign APK with Android SDK apksigner
+        run: |
+          APKSIGNER=$(find $ANDROID_SDK_ROOT/build-tools -name apksigner | tail -n 1)
+          APK_FILE=$(find dist/apk -name "*.apk" | head -n 1)
+          
+          echo "Podpisywanie pliku: $APK_FILE"
+          $APKSIGNER sign --ks release.keystore \
+            --ks-key-alias "${{ secrets.KEY_ALIAS }}" \
+            --ks-pass "pass:${{ secrets.KEYSTORE_PASSWORD }}" \
+            --key-pass "pass:${{ secrets.KEYSTORE_PASSWORD }}" \
+            "$APK_FILE"
+
+      # 5. Budowanie surowego AAB przez Flet
+      - name: Build Raw AAB
         run: |
           flet build aab --python-version 3.12 --arch arm64-v8a \
             --build-version "0.0.7" \
             --build-number ${{ github.run_number }} \
             -o dist/aab
 
-      # 6. Budowanie Web
+      # 6. Podpisywanie AAB za pomocą jarsigner
+      - name: Sign AAB with jarsigner
+        run: |
+          AAB_FILE=$(find dist/aab -name "*.aab" | head -n 1)
+          
+          echo "Podpisywanie pliku: $AAB_FILE"
+          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 \
+            -keystore release.keystore \
+            -storepass "${{ secrets.KEYSTORE_PASSWORD }}" \
+            -keypass "${{ secrets.KEYSTORE_PASSWORD }}" \
+            "$AAB_FILE" "${{ secrets.KEY_ALIAS }}"
+
+      # 7. Weryfikacja podpisu w logach
+      - name: Verify APK Signature
+        run: |
+          APKSIGNER=$(find $ANDROID_SDK_ROOT/build-tools -name apksigner | tail -n 1)
+          APK_FILE=$(find dist/apk -name "*.apk" | head -n 1)
+          $APKSIGNER verify --print-certs "$APK_FILE"
+
+      # 8. Budowanie Web
       - name: Build Web
         run: flet build web --build-number ${{ github.run_number }} -o dist/web
 
-      # 7. Wrzucenie gotowych buildów
+      # 9. Publikacja gotowych paczek
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
