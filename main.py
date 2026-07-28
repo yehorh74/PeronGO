@@ -21,7 +21,7 @@ def main(page: ft.Page):
     page.theme_mode = ft.ThemeMode.DARK
     page.padding = 20
 
-    status_label = ft.Text(value="Kliknij przycisk, aby pobrać dane", size=16)
+    status_label = ft.Text(value="Kliknij przycisk, aby pobrać dane. Test, test", size=16)
 
     def fetch_data(e):
         if not API_KEY:
