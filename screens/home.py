@@ -15,7 +15,8 @@ class HomeScreen(ft.View):
             leading=self.info,
             title=ft.Text("PeronGO"),
             center_title=True,             
-            bgcolor=ft.Colors.SURFACE_CONTAINER_HIGHEST,
+            #bgcolor=ft.Colors.SURFACE_CONTAINER_HIGHEST,
+            actions_padding=10,
             actions=[self.settings_btn]
         )
     
