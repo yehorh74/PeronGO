@@ -8,6 +8,7 @@ class App:
     def __init__(self, page: ft.Page):
         self.page = page
         self.page.title = "PeronGO"
+        self.version = "0.0.16"
 
     async def init_async(self):
         prefs = ft.SharedPreferences()

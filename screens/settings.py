@@ -18,12 +18,6 @@ class SettingsScreen(ft.View):
             #actions=[self.settings_btn]
         )
 
-        self.theme = ft.Text(
-            value="Motyw",
-            #size=18,
-            #weight=ft.FontWeight.BOLD
-        )
-
         current_mode = self.app.page.theme_mode
         if current_mode == ft.ThemeMode.LIGHT:
             initial_val = "light"
@@ -38,41 +32,76 @@ class SettingsScreen(ft.View):
             weight=ft.FontWeight.BOLD
         )
 
+        self.system = ft.ListTile(
+                                leading=ft.Icon(ft.Icons.SETTINGS_APPLICATIONS),
+                                title=ft.Text("Systemowy"),
+                                trailing=ft.Radio(value="system"),
+                                on_click=lambda _: self._select_radio("system")
+                            )
+
+        self.light = ft.ListTile(
+                                leading=ft.Icon(ft.Icons.SUNNY),
+                                title=ft.Text("Jasny"),
+                                trailing=ft.Radio(value="light"),
+                                on_click=lambda _: self._select_radio("light")
+                            )
+
+        self.dark = ft.ListTile(
+                                leading=ft.Icon(ft.Icons.MODE_NIGHT),
+                                title=ft.Text("Ciemny"),
+                                trailing=ft.Radio(value="dark"),
+                                on_click=lambda _: self._select_radio("dark")
+                            )
+
         self.theme_radio_group = ft.RadioGroup(
             value=initial_val,
             on_change=self.change_theme,
             content=ft.Column(
                 controls=[
-                    ft.ListTile(
-                        leading=ft.Icon(ft.Icons.SETTINGS_APPLICATIONS),
-                        title=ft.Text("Systemowy"),
-                        trailing=ft.Radio(value="system"),
-                        on_click=lambda _: self._select_radio("system")
-                    ),
-                    ft.ListTile(
-                        leading=ft.Icon(ft.Icons.SUNNY),
-                        title=ft.Text("Jasny"),
-                        trailing=ft.Radio(value="light"),
-                        on_click=lambda _: self._select_radio("light")
-                    ),
-                    ft.ListTile(
-                        leading=ft.Icon(ft.Icons.MODE_NIGHT),
-                        title=ft.Text("Ciemny"),
-                        trailing=ft.Radio(value="dark"),
-                        on_click=lambda _: self._select_radio("dark")
-                    ),
+                    self.system,
+                    self.light,
+                    self.dark,
                 ],
                 spacing=5
             )
+        )
+
+        self.app_info = ft.Text(
+            value="Informacja o aplikacji",
+            size=16,
+            weight=ft.FontWeight.BOLD
+        )
+
+        self.policy = ft.ListTile(
+            leading=ft.Icons.POLICY,
+            title="Polityka prywatności",
+            on_click=lambda _: print("Dodać link, test")
+        )
+
+        self.terms = ft.ListTile(
+            leading=ft.Icons.EDIT_DOCUMENT,
+            title="Warunki korzystania",
+            on_click=lambda _: print("Dodać link, test")
+        )
+
+        self.version = ft.Container(
+            content=ft.Text(value=self.app.version),
+            alignment=ft.Alignment.CENTER,  
+            padding=10
         )
 
         self.controls = [
             ft.Container(
                 content=ft.Column(
                     controls=[
+                        #ft.Divider(),
                         self.theme_label,
                         self.theme_radio_group,
-                        ft.Divider()
+                        ft.Divider(),
+                        self.app_info,
+                        self.policy,
+                        self.terms,
+                        self.version
                     ],
                     spacing=10
                 ),
