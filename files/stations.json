@@ -1,0 +1,2017 @@
+{
+  "generatedAt": "2026-07-29T17:15:42.4889289Z",
+  "stations": [
+    {
+      "id": 280416,
+      "name": "Adamowo"
+    },
+    {
+      "id": 280388,
+      "name": "Aleksandrów"
+    },
+    {
+      "id": 21501,
+      "name": "Aleksandrów Kujawski"
+    },
+    {
+      "id": 140299,
+      "name": "Alt Rosenthal"
+    },
+    {
+      "id": 76273,
+      "name": "Andrychów"
+    },
+    {
+      "id": 76265,
+      "name": "Andrychów Górnica"
+    },
+    {
+      "id": 82545,
+      "name": "Andrzejówka"
+    },
+    {
+      "id": 150692,
+      "name": "Angermuende"
+    },
+    {
+      "id": 18242,
+      "name": "Anieliny"
+    },
+    {
+      "id": 46011,
+      "name": "Antonin"
+    },
+    {
+      "id": 48892,
+      "name": "Antoniów"
+    },
+    {
+      "id": 48769,
+      "name": "Antoniówka"
+    },
+    {
+      "id": 36772,
+      "name": "Arcelin"
+    },
+    {
+      "id": 141371,
+      "name": "Arnsdorf(Dresden)"
+    },
+    {
+      "id": 155936,
+      "name": "Attnang-Puchheim"
+    },
+    {
+      "id": 12963,
+      "name": "Augustów"
+    },
+    {
+      "id": 12955,
+      "name": "Augustów Port"
+    },
+    {
+      "id": 38984,
+      "name": "Augustówka"
+    },
+    {
+      "id": 17822,
+      "name": "Babi Dół"
+    },
+    {
+      "id": 19174,
+      "name": "Babiak"
+    },
+    {
+      "id": 82750,
+      "name": "Babica"
+    },
+    {
+      "id": 82792,
+      "name": "Babica Kolonia"
+    },
+    {
+      "id": 26161,
+      "name": "Babimost"
+    },
+    {
+      "id": 28936,
+      "name": "Baborówko"
+    },
+    {
+      "id": 36780,
+      "name": "Baboszewo"
+    },
+    {
+      "id": 47399,
+      "name": "Baby"
+    },
+    {
+      "id": 24562,
+      "name": "Baciuty"
+    },
+    {
+      "id": 12260,
+      "name": "Bajtkowo"
+    },
+    {
+      "id": 77537,
+      "name": "Balin"
+    },
+    {
+      "id": 24943,
+      "name": "Balinka"
+    },
+    {
+      "id": 265252,
+      "name": "Bańska Niżna"
+    },
+    {
+      "id": 79335,
+      "name": "Baranówka"
+    },
+    {
+      "id": 37929,
+      "name": "Barchów"
+    },
+    {
+      "id": 82065,
+      "name": "Barcice"
+    },
+    {
+      "id": 39081,
+      "name": "Barcząca"
+    },
+    {
+      "id": 9365,
+      "name": "Barczewo"
+    },
+    {
+      "id": 56481,
+      "name": "Bardo Przyłęk"
+    },
+    {
+      "id": 56523,
+      "name": "Bardo Śląskie"
+    },
+    {
+      "id": 33217,
+      "name": "Barłogi"
+    },
+    {
+      "id": 9423,
+      "name": "Bartąg"
+    },
+    {
+      "id": 55194,
+      "name": "Bartnica"
+    },
+    {
+      "id": 48421,
+      "name": "Bartodzieje"
+    },
+    {
+      "id": 78329,
+      "name": "Barwałd Górny"
+    },
+    {
+      "id": 178068,
+      "name": "Barwałd Średni"
+    },
+    {
+      "id": 2436,
+      "name": "Barzkowice"
+    },
+    {
+      "id": 127085,
+      "name": "Baska"
+    },
+    {
+      "id": 2188,
+      "name": "Baszewice"
+    },
+    {
+      "id": 179240,
+      "name": "Basznia"
+    },
+    {
+      "id": 84822,
+      "name": "Basznia Dolna"
+    },
+    {
+      "id": 52530,
+      "name": "Batowice Lubańskie"
+    },
+    {
+      "id": 141295,
+      "name": "Bautzen"
+    },
+    {
+      "id": 76935,
+      "name": "Bażanowice"
+    },
+    {
+      "id": 50203,
+      "name": "Bąkowiec"
+    },
+    {
+      "id": 61366,
+      "name": "Bąków"
+    },
+    {
+      "id": 32953,
+      "name": "Bednary"
+    },
+    {
+      "id": 46466,
+      "name": "Bedoń"
+    },
+    {
+      "id": 26336,
+      "name": "Belęcin Wielkopolski"
+    },
+    {
+      "id": 33027,
+      "name": "Bełchów"
+    },
+    {
+      "id": 68536,
+      "name": "Bełsznica"
+    },
+    {
+      "id": 66209,
+      "name": "Bełżec"
+    },
+    {
+      "id": 66258,
+      "name": "Bełżec Drugi"
+    },
+    {
+      "id": 125070,
+      "name": "Berdychiv"
+    },
+    {
+      "id": 263503,
+      "name": "Berejów"
+    },
+    {
+      "id": 48264,
+      "name": "Berezów"
+    },
+    {
+      "id": 1000014,
+      "name": "BERLIN -"
+    },
+    {
+      "id": 248058,
+      "name": "Berlin Gesundbrunnen"
+    },
+    {
+      "id": 140163,
+      "name": "Berlin Hauptbahnhof"
+    },
+    {
+      "id": 247482,
+      "name": "Berlin Hbf"
+    },
+    {
+      "id": 140533,
+      "name": "Berlin Lichtenberg"
+    },
+    {
+      "id": 246776,
+      "name": "Berlin Ostbahnhof"
+    },
+    {
+      "id": 140168,
+      "name": "Berlin Ostkreuz"
+    },
+    {
+      "id": 140106,
+      "name": "Berlin Zoolog Garten"
+    },
+    {
+      "id": 140105,
+      "name": "Berlin-Charlottenburg"
+    },
+    {
+      "id": 140277,
+      "name": "Berlin-Mahlsdorf"
+    },
+    {
+      "id": 129109,
+      "name": "Bernartice u Trutnova"
+    },
+    {
+      "id": 280949,
+      "name": "Bezwola"
+    },
+    {
+      "id": 27524,
+      "name": "Będów"
+    },
+    {
+      "id": 81273,
+      "name": "Będziemyśl"
+    },
+    {
+      "id": 74625,
+      "name": "Będzin Ksawera"
+    },
+    {
+      "id": 74633,
+      "name": "Będzin Miasto"
+    },
+    {
+      "id": 4424,
+      "name": "Będzino"
+    },
+    {
+      "id": 9035,
+      "name": "Będźmierowice"
+    },
+    {
+      "id": 44040,
+      "name": "Biadki"
+    },
+    {
+      "id": 79848,
+      "name": "Biadoliny"
+    },
+    {
+      "id": 54064,
+      "name": "Biała Górna"
+    },
+    {
+      "id": 14530,
+      "name": "Biała Pilska"
+    },
+    {
+      "id": 12336,
+      "name": "Biała Piska"
+    },
+    {
+      "id": 40808,
+      "name": "Biała Podlaska"
+    },
+    {
+      "id": 265022,
+      "name": "Biała Podlaska Wschodnia"
+    },
+    {
+      "id": 280951,
+      "name": "Biała Szlachecka"
+    },
+    {
+      "id": 39461,
+      "name": "Białki Siedleckie"
+    },
+    {
+      "id": 3905,
+      "name": "Białogard"
+    },
+    {
+      "id": 14480,
+      "name": "Białośliwie"
+    },
+    {
+      "id": 1420,
+      "name": "Białuń"
+    },
+    {
+      "id": 3087,
+      "name": "Biały Bór"
+    },
+    {
+      "id": 78964,
+      "name": "Biały Dunajec"
+    },
+    {
+      "id": 59832,
+      "name": "Biały Kościół"
+    },
+    {
+      "id": 15032,
+      "name": "Biały Zdrój Południowy"
+    },
+    {
+      "id": 24000,
+      "name": "Białystok"
+    },
+    {
+      "id": 24059,
+      "name": "Białystok Bacieczki"
+    },
+    {
+      "id": 24273,
+      "name": "Białystok Fabryczny"
+    },
+    {
+      "id": 264544,
+      "name": "Białystok Nowe Miasto"
+    },
+    {
+      "id": 24372,
+      "name": "Białystok Stadion"
+    },
+    {
+      "id": 24042,
+      "name": "Białystok Starosielce"
+    },
+    {
+      "id": 279919,
+      "name": "Białystok Zielone Wzgórza"
+    },
+    {
+      "id": 81786,
+      "name": "Biecz"
+    },
+    {
+      "id": 4226,
+      "name": "Bieczyno Pomorskie"
+    },
+    {
+      "id": 60244,
+      "name": "Bielany Wrocławskie"
+    },
+    {
+      "id": 178290,
+      "name": "Bielawa Centralna"
+    },
+    {
+      "id": 281404,
+      "name": "Bielawa Góry Sowie"
+    },
+    {
+      "id": 281405,
+      "name": "Bielawa Jezioro"
+    },
+    {
+      "id": 54940,
+      "name": "Bielawa Zachodnia"
+    },
+    {
+      "id": 13433,
+      "name": "Bielin"
+    },
+    {
+      "id": 48850,
+      "name": "Bieliny Opoczyńskie"
+    },
+    {
+      "id": 24430,
+      "name": "Bielsk Podlaski"
+    },
+    {
+      "id": 76109,
+      "name": "Bielsko-Biała Główna"
+    },
+    {
+      "id": 76141,
+      "name": "Bielsko-Biała Komorowice"
+    },
+    {
+      "id": 76349,
+      "name": "Bielsko-Biała Leszczyny"
+    },
+    {
+      "id": 76356,
+      "name": "Bielsko-Biała Lipnik"
+    },
+    {
+      "id": 76364,
+      "name": "Bielsko-Biała Mikuszowice"
+    },
+    {
+      "id": 76133,
+      "name": "Bielsko-Biała Północ"
+    },
+    {
+      "id": 76158,
+      "name": "Bielsko-Biała Wschód"
+    },
+    {
+      "id": 41368,
+      "name": "Bieniów"
+    },
+    {
+      "id": 67140,
+      "name": "Bierawa"
+    },
+    {
+      "id": 57356,
+      "name": "Bierkowice"
+    },
+    {
+      "id": 29231,
+      "name": "Biernatowo"
+    },
+    {
+      "id": 59584,
+      "name": "Bierutów"
+    },
+    {
+      "id": 29199,
+      "name": "Bierzwnik"
+    },
+    {
+      "id": 22095,
+      "name": "Biesal"
+    },
+    {
+      "id": 4630,
+      "name": "Biesowice"
+    },
+    {
+      "id": 125082,
+      "name": "Bila Tserkva"
+    },
+    {
+      "id": 66407,
+      "name": "Biłgoraj"
+    },
+    {
+      "id": 44883,
+      "name": "Biniew"
+    },
+    {
+      "id": 3178,
+      "name": "Bińcze"
+    },
+    {
+      "id": 141299,
+      "name": "Bischofswerda"
+    },
+    {
+      "id": 50674,
+      "name": "Biskupice"
+    },
+    {
+      "id": 61333,
+      "name": "Biskupice koło Kluczborka"
+    },
+    {
+      "id": 58388,
+      "name": "Biskupice Oławskie"
+    },
+    {
+      "id": 30973,
+      "name": "Biskupice Wielkopolskie"
+    },
+    {
+      "id": 21071,
+      "name": "Biskupiec Pomorski"
+    },
+    {
+      "id": 3186,
+      "name": "Biskupnica"
+    },
+    {
+      "id": 62844,
+      "name": "Blachownia"
+    },
+    {
+      "id": 265741,
+      "name": "Blachownia"
+    },
+    {
+      "id": 12948,
+      "name": "Blizna"
+    },
+    {
+      "id": 48272,
+      "name": "Bliżyn"
+    },
+    {
+      "id": 150780,
+      "name": "Blumenhagen"
+    },
+    {
+      "id": 45344,
+      "name": "Błaszki"
+    },
+    {
+      "id": 55491,
+      "name": "Błażkowa"
+    },
+    {
+      "id": 16584,
+      "name": "Błądzim"
+    },
+    {
+      "id": 34363,
+      "name": "Błonie"
+    },
+    {
+      "id": 280301,
+      "name": "Błonie Rokitno"
+    },
+    {
+      "id": 43331,
+      "name": "Błotnica"
+    },
+    {
+      "id": 61739,
+      "name": "Błotnica Strzelecka"
+    },
+    {
+      "id": 81091,
+      "name": "Bobowa"
+    },
+    {
+      "id": 81125,
+      "name": "Bobowa-Miasto"
+    },
+    {
+      "id": 33019,
+      "name": "Bobrowniki"
+    },
+    {
+      "id": 3343,
+      "name": "Bobrowo Pomorskie"
+    },
+    {
+      "id": 84731,
+      "name": "Bobrówka"
+    },
+    {
+      "id": 47878,
+      "name": "Bobry"
+    },
+    {
+      "id": 79657,
+      "name": "Bochnia"
+    },
+    {
+      "id": 25973,
+      "name": "Boczów"
+    },
+    {
+      "id": 49320,
+      "name": "Bodzechów"
+    },
+    {
+      "id": 10942,
+      "name": "Bogaczewo"
+    },
+    {
+      "id": 27888,
+      "name": "Bogaczów"
+    },
+    {
+      "id": 14027,
+      "name": "Bogdaniec"
+    },
+    {
+      "id": 262507,
+      "name": "Bogdanowo"
+    },
+    {
+      "id": 81067,
+      "name": "Bogoniowice Ciężkowice"
+    },
+    {
+      "id": 82727,
+      "name": "Boguchwała"
+    },
+    {
+      "id": 280245,
+      "name": "Boguchwała Dolna"
+    },
+    {
+      "id": 80663,
+      "name": "Bogumiłowice"
+    },
+    {
+      "id": 20966,
+      "name": "Boguszewo"
+    },
+    {
+      "id": 55228,
+      "name": "Boguszów-Gorce"
+    },
+    {
+      "id": 55251,
+      "name": "Boguszów-Gorce Wschód"
+    },
+    {
+      "id": 55269,
+      "name": "Boguszów-Gorce Zachód"
+    },
+    {
+      "id": 127359,
+      "name": "Bohumin"
+    },
+    {
+      "id": 179223,
+      "name": "Bohumin"
+    },
+    {
+      "id": 44511,
+      "name": "Bojanowo"
+    },
+    {
+      "id": 24554,
+      "name": "Bojary"
+    },
+    {
+      "id": 49262,
+      "name": "Boksycka"
+    },
+    {
+      "id": 29868,
+      "name": "Bolechowo"
+    },
+    {
+      "id": 54692,
+      "name": "Bolesławice Świdnickie"
+    },
+    {
+      "id": 53850,
+      "name": "Bolesławiec"
+    },
+    {
+      "id": 5181,
+      "name": "Boleszewo"
+    },
+    {
+      "id": 13425,
+      "name": "Boleszkowice"
+    },
+    {
+      "id": 60160,
+      "name": "Boreczek"
+    },
+    {
+      "id": 39487,
+      "name": "Borki-Kosy"
+    },
+    {
+      "id": 61424,
+      "name": "Borkowice"
+    },
+    {
+      "id": 17848,
+      "name": "Borkowo"
+    },
+    {
+      "id": 72066,
+      "name": "Boronów"
+    },
+    {
+      "id": 139099,
+      "name": "Borovnica"
+    },
+    {
+      "id": 59345,
+      "name": "Borowa Oleśnicka"
+    },
+    {
+      "id": 25320,
+      "name": "Borowiki"
+    },
+    {
+      "id": 40139,
+      "name": "Borowina"
+    },
+    {
+      "id": 24083,
+      "name": "Borsukówka"
+    },
+    {
+      "id": 46656,
+      "name": "Borszewice"
+    },
+    {
+      "id": 44545,
+      "name": "Borszyn Mały"
+    },
+    {
+      "id": 44537,
+      "name": "Borszyn Wielki"
+    },
+    {
+      "id": 216137,
+      "name": "Borucice"
+    },
+    {
+      "id": 43356,
+      "name": "Boszkowo"
+    },
+    {
+      "id": 34397,
+      "name": "Boża Wola"
+    },
+    {
+      "id": 46250,
+      "name": "Bożacin"
+    },
+    {
+      "id": 5421,
+      "name": "Bożepole Wielkie"
+    },
+    {
+      "id": 23192,
+      "name": "Brachlewo"
+    },
+    {
+      "id": 11254,
+      "name": "Braniewo"
+    },
+    {
+      "id": 130985,
+      "name": "Bratislava Hlavna Stanica"
+    },
+    {
+      "id": 49742,
+      "name": "Bratków"
+    },
+    {
+      "id": 46854,
+      "name": "Bratoszewice"
+    },
+    {
+      "id": 127178,
+      "name": "Breclav"
+    },
+    {
+      "id": 141291,
+      "name": "Breitendorf"
+    },
+    {
+      "id": 59386,
+      "name": "Brochocin Trzebnicki"
+    },
+    {
+      "id": 21204,
+      "name": "Brodnica"
+    },
+    {
+      "id": 49288,
+      "name": "Brody Iłżeckie"
+    },
+    {
+      "id": 36483,
+      "name": "Brody Warszawskie"
+    },
+    {
+      "id": 3228,
+      "name": "Brokęcino"
+    },
+    {
+      "id": 44867,
+      "name": "Bronów"
+    },
+    {
+      "id": 157163,
+      "name": "Bruck A.D.Mur"
+    },
+    {
+      "id": 15669,
+      "name": "Brusy"
+    },
+    {
+      "id": 34132,
+      "name": "Brwinów"
+    },
+    {
+      "id": 48306,
+      "name": "Brzask"
+    },
+    {
+      "id": 62109,
+      "name": "Brzeg"
+    },
+    {
+      "id": 60269,
+      "name": "Brzeg Dolny"
+    },
+    {
+      "id": 42473,
+      "name": "Brzeg Głogowski"
+    },
+    {
+      "id": 79806,
+      "name": "Brzesko Okocim"
+    },
+    {
+      "id": 178222,
+      "name": "Brzeszcze"
+    },
+    {
+      "id": 77222,
+      "name": "Brzeszcze Jawiszowice"
+    },
+    {
+      "id": 178111,
+      "name": "Brzezie"
+    },
+    {
+      "id": 60285,
+      "name": "Brzezinka Średzka"
+    },
+    {
+      "id": 63867,
+      "name": "Brzeziny"
+    },
+    {
+      "id": 78048,
+      "name": "Brzeźnica"
+    },
+    {
+      "id": 40055,
+      "name": "Brzeźnica Bychawska"
+    },
+    {
+      "id": 15586,
+      "name": "Brzeźno Człuchowskie"
+    },
+    {
+      "id": 18572,
+      "name": "Brzoza Bydgoska"
+    },
+    {
+      "id": 19760,
+      "name": "Brzoza Toruńska"
+    },
+    {
+      "id": 40865,
+      "name": "Brzozowica"
+    },
+    {
+      "id": 26534,
+      "name": "Brzozowiec Gorzowski"
+    },
+    {
+      "id": 49346,
+      "name": "Brzóstowa"
+    },
+    {
+      "id": 35360,
+      "name": "Brzózki"
+    },
+    {
+      "id": 48918,
+      "name": "Brzustów"
+    },
+    {
+      "id": 27839,
+      "name": "Buchałów"
+    },
+    {
+      "id": 27565,
+      "name": "Budachów"
+    },
+    {
+      "id": 130357,
+      "name": "Budapest-Nyugati"
+    },
+    {
+      "id": 33175,
+      "name": "Budki Nowe"
+    },
+    {
+      "id": 82958,
+      "name": "Budy Głogowskie"
+    },
+    {
+      "id": 56739,
+      "name": "Budziszowice"
+    },
+    {
+      "id": 16162,
+      "name": "Budzyń"
+    },
+    {
+      "id": 150198,
+      "name": "Buetzow"
+    },
+    {
+      "id": 9472,
+      "name": "Bujaki"
+    },
+    {
+      "id": 27235,
+      "name": "Buk"
+    },
+    {
+      "id": 64741,
+      "name": "Bukowa"
+    },
+    {
+      "id": 59634,
+      "name": "Bukowice Trzebnickie"
+    },
+    {
+      "id": 26278,
+      "name": "Bukowiec Międzyrzecki"
+    },
+    {
+      "id": 46136,
+      "name": "Bukowina Sycowska"
+    },
+    {
+      "id": 74203,
+      "name": "Bukowno"
+    },
+    {
+      "id": 74260,
+      "name": "Bukowno Przymiarki"
+    },
+    {
+      "id": 61382,
+      "name": "Bukowo"
+    },
+    {
+      "id": 15891,
+      "name": "Bukowo Człuchowskie"
+    },
+    {
+      "id": 9258,
+      "name": "Bukwałd"
+    },
+    {
+      "id": 76257,
+      "name": "Bulowice"
+    },
+    {
+      "id": 22459,
+      "name": "Burkat"
+    },
+    {
+      "id": 264717,
+      "name": "Burkatów"
+    },
+    {
+      "id": 20941,
+      "name": "Bursztynowo"
+    },
+    {
+      "id": 64006,
+      "name": "Busko-Zdrój"
+    },
+    {
+      "id": 61341,
+      "name": "Byczyna Kluczborska"
+    },
+    {
+      "id": 16725,
+      "name": "Bydgoszcz Bielawy"
+    },
+    {
+      "id": 258924,
+      "name": "Bydgoszcz Błonie"
+    },
+    {
+      "id": 16741,
+      "name": "Bydgoszcz Brdyujście"
+    },
+    {
+      "id": 18580,
+      "name": "Bydgoszcz Fordon"
+    },
+    {
+      "id": 18408,
+      "name": "Bydgoszcz Główna"
+    },
+    {
+      "id": 18374,
+      "name": "Bydgoszcz Leśna"
+    },
+    {
+      "id": 16782,
+      "name": "Bydgoszcz Łęgnowo"
+    },
+    {
+      "id": 18523,
+      "name": "Bydgoszcz Osowa Góra"
+    },
+    {
+      "id": 16758,
+      "name": "Bydgoszcz Politechnika"
+    },
+    {
+      "id": 16717,
+      "name": "Bydgoszcz Wschód"
+    },
+    {
+      "id": 18515,
+      "name": "Bydgoszcz Zachód"
+    },
+    {
+      "id": 78576,
+      "name": "Bystra Podhalańska"
+    },
+    {
+      "id": 54759,
+      "name": "Bystrzyca Górna"
+    },
+    {
+      "id": 57414,
+      "name": "Bystrzyca Kłodzka"
+    },
+    {
+      "id": 57398,
+      "name": "Bystrzyca Kłodzka Przedmieście"
+    },
+    {
+      "id": 50625,
+      "name": "Bystrzyca koło Lublina"
+    },
+    {
+      "id": 27557,
+      "name": "Bytnica"
+    },
+    {
+      "id": 72306,
+      "name": "Bytom"
+    },
+    {
+      "id": 72413,
+      "name": "Bytom Karb"
+    },
+    {
+      "id": 42127,
+      "name": "Bytom Odrzański"
+    },
+    {
+      "id": 280444,
+      "name": "Bytom Stroszek"
+    },
+    {
+      "id": 8698,
+      "name": "Bytonia"
+    },
+    {
+      "id": 9290,
+      "name": "Bzowiec"
+    },
+    {
+      "id": 150718,
+      "name": "Casekow"
+    },
+    {
+      "id": 39883,
+      "name": "Cegłów"
+    },
+    {
+      "id": 15768,
+      "name": "Cekcyn"
+    },
+    {
+      "id": 127165,
+      "name": "Celadna"
+    },
+    {
+      "id": 38943,
+      "name": "Celestynów"
+    },
+    {
+      "id": 139049,
+      "name": "Celje"
+    },
+    {
+      "id": 9266,
+      "name": "Cerkiewnik"
+    },
+    {
+      "id": 128166,
+      "name": "Ceska Trebova"
+    },
+    {
+      "id": 179225,
+      "name": "Cesky Tesin"
+    },
+    {
+      "id": 78709,
+      "name": "Chabówka"
+    },
+    {
+      "id": 265251,
+      "name": "Chabówka Stadion"
+    },
+    {
+      "id": 67900,
+      "name": "Chałupki"
+    },
+    {
+      "id": 6734,
+      "name": "Chałupy"
+    },
+    {
+      "id": 4978,
+      "name": "Charnowo Słupskie"
+    },
+    {
+      "id": 64600,
+      "name": "Charsznica"
+    },
+    {
+      "id": 46615,
+      "name": "Chechło"
+    },
+    {
+      "id": 50906,
+      "name": "Chełm"
+    },
+    {
+      "id": 50948,
+      "name": "Chełm Miasto"
+    },
+    {
+      "id": 77321,
+      "name": "Chełm Śląski"
+    },
+    {
+      "id": 77958,
+      "name": "Chełmek"
+    },
+    {
+      "id": 60483,
+      "name": "Chełmek Wołowski"
+    },
+    {
+      "id": 20164,
+      "name": "Chełmża"
+    },
+    {
+      "id": 28696,
+      "name": "Chludowo"
+    },
+    {
+      "id": 19075,
+      "name": "Chmielniki Bydgoskie"
+    },
+    {
+      "id": 259156,
+      "name": "Chmielów Zagumnie"
+    },
+    {
+      "id": 54262,
+      "name": "Chocianów"
+    },
+    {
+      "id": 30288,
+      "name": "Chocicza"
+    },
+    {
+      "id": 32557,
+      "name": "Chociszew"
+    },
+    {
+      "id": 26294,
+      "name": "Chociszewo Rogoziniec"
+    },
+    {
+      "id": 19562,
+      "name": "Chociw Łaski"
+    },
+    {
+      "id": 3517,
+      "name": "Chociwel"
+    },
+    {
+      "id": 78212,
+      "name": "Chocznia"
+    },
+    {
+      "id": 76281,
+      "name": "Chocznia Górna"
+    },
+    {
+      "id": 16188,
+      "name": "Chodzież"
+    },
+    {
+      "id": 13334,
+      "name": "Chojna"
+    },
+    {
+      "id": 15602,
+      "name": "Chojnice"
+    },
+    {
+      "id": 81042,
+      "name": "Chojnik"
+    },
+    {
+      "id": 54007,
+      "name": "Chojnów"
+    },
+    {
+      "id": 23416,
+      "name": "Chorzele"
+    },
+    {
+      "id": 81547,
+      "name": "Chorzelów"
+    },
+    {
+      "id": 280295,
+      "name": "Chorzelów Południowy"
+    },
+    {
+      "id": 72058,
+      "name": "Chorzew Siemkowice"
+    },
+    {
+      "id": 73106,
+      "name": "Chorzów Batory"
+    },
+    {
+      "id": 72272,
+      "name": "Chorzów Miasto"
+    },
+    {
+      "id": 72207,
+      "name": "Chorzów Stary"
+    },
+    {
+      "id": 280443,
+      "name": "Chorzów Uniwersytet"
+    },
+    {
+      "id": 29405,
+      "name": "Choszczno"
+    },
+    {
+      "id": 36533,
+      "name": "Chotomów"
+    },
+    {
+      "id": 178633,
+      "name": "Chotomów"
+    },
+    {
+      "id": 40949,
+      "name": "Chotyłów"
+    },
+    {
+      "id": 49056,
+      "name": "Chronów"
+    },
+    {
+      "id": 38968,
+      "name": "Chrosna"
+    },
+    {
+      "id": 26187,
+      "name": "Chrośnica"
+    },
+    {
+      "id": 53272,
+      "name": "Chróstnik"
+    },
+    {
+      "id": 61085,
+      "name": "Chróścice"
+    },
+    {
+      "id": 56853,
+      "name": "Chróścina Nyska"
+    },
+    {
+      "id": 60699,
+      "name": "Chróścina Opolska"
+    },
+    {
+      "id": 47415,
+      "name": "Chrusty Nowe"
+    },
+    {
+      "id": 75242,
+      "name": "Chruszczobród"
+    },
+    {
+      "id": 77800,
+      "name": "Chrzanów"
+    },
+    {
+      "id": 77834,
+      "name": "Chrzanów Śródmieście"
+    },
+    {
+      "id": 263510,
+      "name": "Chrząstawa Mała"
+    },
+    {
+      "id": 60848,
+      "name": "Chrząstowice"
+    },
+    {
+      "id": 74336,
+      "name": "Chrząstowice Olkuskie"
+    },
+    {
+      "id": 38125,
+      "name": "Chrzęsne"
+    },
+    {
+      "id": 44792,
+      "name": "Chwalibogowo"
+    },
+    {
+      "id": 75796,
+      "name": "Chybie"
+    },
+    {
+      "id": 75820,
+      "name": "Chybie Mnich"
+    },
+    {
+      "id": 48595,
+      "name": "Chynów"
+    },
+    {
+      "id": 118281,
+      "name": "Chytra"
+    },
+    {
+      "id": 71522,
+      "name": "Ciasna"
+    },
+    {
+      "id": 55673,
+      "name": "Ciechanowice"
+    },
+    {
+      "id": 36939,
+      "name": "Ciechanów"
+    },
+    {
+      "id": 36913,
+      "name": "Ciechanów Przemysłowy"
+    },
+    {
+      "id": 21550,
+      "name": "Ciechocinek"
+    },
+    {
+      "id": 4622,
+      "name": "Ciecholub"
+    },
+    {
+      "id": 50633,
+      "name": "Ciecierzyn"
+    },
+    {
+      "id": 36749,
+      "name": "Cieksyn"
+    },
+    {
+      "id": 33365,
+      "name": "Cienin"
+    },
+    {
+      "id": 33373,
+      "name": "Cienin Kościelny"
+    },
+    {
+      "id": 7328,
+      "name": "Cieplewo"
+    },
+    {
+      "id": 19810,
+      "name": "Cierpice"
+    },
+    {
+      "id": 259135,
+      "name": "Cierpice Kąkol"
+    },
+    {
+      "id": 39727,
+      "name": "Cierpigórz"
+    },
+    {
+      "id": 44222,
+      "name": "Cieszków"
+    },
+    {
+      "id": 75655,
+      "name": "Cieszyn"
+    },
+    {
+      "id": 75648,
+      "name": "Cieszyn Marklowice"
+    },
+    {
+      "id": 264958,
+      "name": "Cieszyn Uniwersytet"
+    },
+    {
+      "id": 3558,
+      "name": "Cieszyno Łobeskie"
+    },
+    {
+      "id": 59709,
+      "name": "Cieśle"
+    },
+    {
+      "id": 76752,
+      "name": "Cięcina"
+    },
+    {
+      "id": 178279,
+      "name": "Cięcina Dolna"
+    },
+    {
+      "id": 79756,
+      "name": "Cikowice"
+    },
+    {
+      "id": 39149,
+      "name": "Cisie"
+    },
+    {
+      "id": 76760,
+      "name": "Cisiec"
+    },
+    {
+      "id": 82990,
+      "name": "Cmolas"
+    },
+    {
+      "id": 140581,
+      "name": "Cottbus Hbf"
+    },
+    {
+      "id": 247495,
+      "name": "Cottbus-Sandow"
+    },
+    {
+      "id": 15149,
+      "name": "Cybowo"
+    },
+    {
+      "id": 241558,
+      "name": "Cygany"
+    },
+    {
+      "id": 280953,
+      "name": "Cykarzew Północny"
+    },
+    {
+      "id": 40436,
+      "name": "Czachówek Górny"
+    },
+    {
+      "id": 40444,
+      "name": "Czachówek Południowy"
+    },
+    {
+      "id": 40360,
+      "name": "Czachówek Wschodni"
+    },
+    {
+      "id": 3368,
+      "name": "Czaplinek"
+    },
+    {
+      "id": 8540,
+      "name": "Czarlin"
+    },
+    {
+      "id": 24232,
+      "name": "Czarna Białostocka"
+    },
+    {
+      "id": 80945,
+      "name": "Czarna Tarnowska"
+    },
+    {
+      "id": 8961,
+      "name": "Czarna Woda"
+    },
+    {
+      "id": 64949,
+      "name": "Czarnca"
+    },
+    {
+      "id": 3137,
+      "name": "Czarne"
+    },
+    {
+      "id": 3376,
+      "name": "Czarne Małe"
+    },
+    {
+      "id": 49577,
+      "name": "Czarniecka Góra"
+    },
+    {
+      "id": 3145,
+      "name": "Czarnobór"
+    },
+    {
+      "id": 4010,
+      "name": "Czarnowęsy Pomorskie"
+    },
+    {
+      "id": 24216,
+      "name": "Czarny Blok"
+    },
+    {
+      "id": 76000,
+      "name": "Czechowice-Dziedzice"
+    },
+    {
+      "id": 76067,
+      "name": "Czechowice-Dziedzice Południowe"
+    },
+    {
+      "id": 76075,
+      "name": "Czechowice-Dziedzice Przystanek"
+    },
+    {
+      "id": 24125,
+      "name": "Czechowizna"
+    },
+    {
+      "id": 45971,
+      "name": "Czekanów"
+    },
+    {
+      "id": 44156,
+      "name": "Czeluścin"
+    },
+    {
+      "id": 43448,
+      "name": "Czempiń"
+    },
+    {
+      "id": 836,
+      "name": "Czepino"
+    },
+    {
+      "id": 25205,
+      "name": "Czeremcha"
+    },
+    {
+      "id": 20057,
+      "name": "Czermno"
+    },
+    {
+      "id": 42481,
+      "name": "Czerna"
+    },
+    {
+      "id": 60327,
+      "name": "Czerna Mała"
+    },
+    {
+      "id": 58321,
+      "name": "Czernica Wrocławska"
+    },
+    {
+      "id": 30890,
+      "name": "Czerniejewo"
+    },
+    {
+      "id": 21683,
+      "name": "Czerniewice"
+    },
+    {
+      "id": 19976,
+      "name": "Czernikowo"
+    },
+    {
+      "id": 8904,
+      "name": "Czersk"
+    },
+    {
+      "id": 17269,
+      "name": "Czersk Świecki"
+    },
+    {
+      "id": 36947,
+      "name": "Czeruchy"
+    },
+    {
+      "id": 27508,
+      "name": "Czerwieńsk"
+    },
+    {
+      "id": 68122,
+      "name": "Czerwionka"
+    },
+    {
+      "id": 178592,
+      "name": "Czerwionka Dębieńsko"
+    },
+    {
+      "id": 29843,
+      "name": "Czerwonak"
+    },
+    {
+      "id": 242220,
+      "name": "Czerwonak Osiedle"
+    },
+    {
+      "id": 9704,
+      "name": "Czerwonka"
+    },
+    {
+      "id": 62232,
+      "name": "Czeska Wieś"
+    },
+    {
+      "id": 49510,
+      "name": "Czesławice"
+    },
+    {
+      "id": 62653,
+      "name": "Częstochowa"
+    },
+    {
+      "id": 1000005,
+      "name": "CZĘSTOCHOWA -"
+    },
+    {
+      "id": 63099,
+      "name": "Częstochowa Aniołów"
+    },
+    {
+      "id": 62836,
+      "name": "Częstochowa Gnaszyn"
+    },
+    {
+      "id": 265740,
+      "name": "Częstochowa Gnaszyn"
+    },
+    {
+      "id": 62687,
+      "name": "Częstochowa Raków"
+    },
+    {
+      "id": 62802,
+      "name": "Częstochowa Stradom"
+    },
+    {
+      "id": 15594,
+      "name": "Człuchów"
+    },
+    {
+      "id": 82768,
+      "name": "Czudec"
+    },
+    {
+      "id": 24844,
+      "name": "Czuprynowo"
+    },
+    {
+      "id": 24737,
+      "name": "Czyżew"
+    },
+    {
+      "id": 178587,
+      "name": "Czyżowice"
+    },
+    {
+      "id": 49353,
+      "name": "Ćmielów"
+    },
+    {
+      "id": 36756,
+      "name": "Dalanówek"
+    },
+    {
+      "id": 23713,
+      "name": "Dalekie"
+    },
+    {
+      "id": 828,
+      "name": "Daleszewo"
+    },
+    {
+      "id": 3038,
+      "name": "Dalęcino"
+    },
+    {
+      "id": 4895,
+      "name": "Damnica"
+    },
+    {
+      "id": 44081,
+      "name": "Daniszyn"
+    },
+    {
+      "id": 77255,
+      "name": "Dankowice"
+    },
+    {
+      "id": 5157,
+      "name": "Darłowo"
+    },
+    {
+      "id": 124876,
+      "name": "Darnytsia"
+    },
+    {
+      "id": 4036,
+      "name": "Daszewo"
+    },
+    {
+      "id": 81380,
+      "name": "Dąbie koło Dębicy"
+    },
+    {
+      "id": 36640,
+      "name": "Dąbkowizna"
+    },
+    {
+      "id": 14068,
+      "name": "Dąbroszyn"
+    },
+    {
+      "id": 24893,
+      "name": "Dąbrowa Białostocka"
+    },
+    {
+      "id": 18614,
+      "name": "Dąbrowa Chełmińska"
+    },
+    {
+      "id": 280628,
+      "name": "Dąbrowa Chełmińska Centrum"
+    },
+    {
+      "id": 74583,
+      "name": "Dąbrowa Górnicza"
+    },
+    {
+      "id": 74567,
+      "name": "Dąbrowa Górnicza Gołonóg"
+    },
+    {
+      "id": 74542,
+      "name": "Dąbrowa Górnicza Pogoria"
+    },
+    {
+      "id": 74161,
+      "name": "Dąbrowa Górnicza Południowa"
+    },
+    {
+      "id": 74534,
+      "name": "Dąbrowa Górnicza Sikorka"
+    },
+    {
+      "id": 74815,
+      "name": "Dąbrowa Górnicza Strzemieszyce"
+    },
+    {
+      "id": 74880,
+      "name": "Dąbrowa Górnicza Wschodnia"
+    },
+    {
+      "id": 74500,
+      "name": "Dąbrowa Górnicza Ząbkowice"
+    },
+    {
+      "id": 60673,
+      "name": "Dąbrowa Niemodlińska"
+    },
+    {
+      "id": 178887,
+      "name": "Dąbrowa Oleśnicka"
+    },
+    {
+      "id": 24711,
+      "name": "Dąbrowa-Łazy"
+    },
+    {
+      "id": 47381,
+      "name": "Dąbrowice Skierniewickie"
+    },
+    {
+      "id": 17285,
+      "name": "Dąbrowy"
+    },
+    {
+      "id": 265358,
+      "name": "Dąbrówka Jezioro Mucharskie"
+    },
+    {
+      "id": 8052,
+      "name": "Dąbrówka Malborska"
+    },
+    {
+      "id": 26310,
+      "name": "Dąbrówka Wielkopolska"
+    },
+    {
+      "id": 279429,
+      "name": "Dąbrówka Zabłotnia"
+    },
+    {
+      "id": 141298,
+      "name": "Demitz-Thumitz"
+    },
+    {
+      "id": 128490,
+      "name": "Desna"
+    },
+    {
+      "id": 249946,
+      "name": "Desna - Pustinska"
+    },
+    {
+      "id": 249949,
+      "name": "Desna - Riedlova Vila"
+    },
+    {
+      "id": 26559,
+      "name": "Deszczno"
+    },
+    {
+      "id": 48868,
+      "name": "Dęba Opoczyńska"
+    },
+    {
+      "id": 65524,
+      "name": "Dęba Rozalin"
+    },
+    {
+      "id": 39123,
+      "name": "Dębe Wielkie"
+    },
+    {
+      "id": 81208,
+      "name": "Dębica"
+    },
+    {
+      "id": 178079,
+      "name": "Dębica Wschodnia"
+    },
+    {
+      "id": 49809,
+      "name": "Dęblin"
+    },
+    {
+      "id": 61564,
+      "name": "Dębska Kuźnia"
+    },
+    {
+      "id": 64097,
+      "name": "Dębska Wola"
+    },
+    {
+      "id": 66282,
+      "name": "Długi Kąt"
+    },
+    {
+      "id": 59337,
+      "name": "Długołęka"
+    },
+    {
+      "id": 57422,
+      "name": "Długopole-Zdrój"
+    },
+    {
+      "id": 125806,
+      "name": "Dnipro-Holovnyi"
+    },
+    {
+      "id": 36384,
+      "name": "Dobczyn"
+    },
+    {
+      "id": 29181,
+      "name": "Dobiegniew"
+    },
+    {
+      "id": 48520,
+      "name": "Dobieszyn"
+    },
+    {
+      "id": 14779,
+      "name": "Dobino Wałeckie"
+    },
+    {
+      "id": 56473,
+      "name": "Doboszowice"
+    },
+    {
+      "id": 127146,
+      "name": "Dobra u Frydku-Mistku"
+    },
+    {
+      "id": 127149,
+      "name": "Dobratice-Vojkovice"
+    },
+    {
+      "id": 9282,
+      "name": "Dobre Miasto"
+    }
+  ],
+  "totalCount": 3264,
+  "returnedCount": 500,
+  "page": 1,
+  "pageSize": 500,
+  "totalPages": 7,
+  "usage": {
+    "description": "ID stacji można używać w parametrze stations",
+    "examples": [
+      "GET /api/v1/schedules?stations=38851,38844",
+      "GET /api/v1/operations?stations=38851"
+    ]
+  }
+}
