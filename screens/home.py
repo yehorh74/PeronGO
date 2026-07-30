@@ -64,7 +64,11 @@ class HomeScreen(ft.View):
             on_change=self.handle_date_change,
         )
 
-        self.date_btn = ft.OutlinedButton(content=self.selected_date, icon=ft.Icons.CALENDAR_MONTH, on_click=self.open_date_picker)
+        button_style = ft.ButtonStyle(
+            padding=ft.Padding.symmetric(horizontal=8, vertical=5), # Mniejszy wewnętrzny margines
+        )
+
+        self.date_btn = ft.OutlinedButton(content=self.selected_date, icon=ft.Icons.CALENDAR_MONTH, on_click=self.open_date_picker, style=button_style, width=float("inf"))
 
         self.time_picker = ft.TimePicker(
             confirm_text="OK",
@@ -76,7 +80,9 @@ class HomeScreen(ft.View):
         self.time_btn = ft.OutlinedButton(
             content=self.selected_time, 
             icon=ft.Icons.ACCESS_TIME, 
-            on_click=self.open_time_picker
+            on_click=self.open_time_picker,
+            style=button_style,
+            width=float("inf"),
         )
 
         self.type_radio_group = ft.RadioGroup(
@@ -124,28 +130,37 @@ class HomeScreen(ft.View):
             margin=ft.Margin.only(bottom=10),
         )
 
+        options_row = ft.ResponsiveRow(
+            controls=[
+                ft.Container(content=self.date_btn, col={"xs": 6, "md": 3}),
+                ft.Container(content=self.time_btn, col={"xs": 6, "md": 3}),
+                ft.Container(
+                    content=self.type_radio_group, 
+                    col={"xs": 12, "md": 6},
+                    alignment=ft.Alignment.CENTER
+                ),
+            ],
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            spacing=8,
+            run_spacing=10
+        )
+
         search_block = ft.Column(
             width=500, 
             controls=[
                 header_container,
                 self.stations_search,
-                ft.Row(
-                    controls=[
-                        self.date_btn,
-                        self.time_btn,
-                        ft.Container(expand=True),
-                        self.type_radio_group
-                    ]
-                ),
+                options_row,
                 self.submit_btn
             ],
             alignment=ft.CrossAxisAlignment.CENTER,
-            spacing=15
+            spacing=15,
+            scroll=ft.ScrollMode.AUTO,
         )
 
         self.centered_container = ft.Container(
             expand=True,  
-            alignment=ft.Alignment.CENTER,
+            alignment=ft.Alignment.TOP_CENTER,
             content=search_block
         )
 
