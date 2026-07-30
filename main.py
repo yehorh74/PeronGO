@@ -8,7 +8,12 @@ class App:
     def __init__(self, page: ft.Page):
         self.page = page
         self.page.title = "PeronGO"
-        self.version = "0.0.16"
+        self.version = "0.1.0"
+
+        page.locale_configuration = ft.LocaleConfiguration(
+            supported_locales=[ft.Locale("pl", "PL")],
+            current_locale=ft.Locale("pl", "PL"),
+        )
 
     async def init_async(self):
         prefs = ft.SharedPreferences()
