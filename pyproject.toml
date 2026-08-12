@@ -27,7 +27,7 @@ company = "Yehor Horin"
 
 [tool.flet.app]
 path = "."
-assets = [".env"]
+assets = ["files"]
 
 [tool.flet.flutter.pubspec.dependency_overrides]
 flet = { git = { url = "https://github.com/flet-dev/flet.git", ref = "main", path = "packages/flet" } }
