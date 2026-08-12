@@ -40,13 +40,6 @@ jobs:
         run: |
           printf '%s' "$KEYSTORE_BASE64" | base64 -d > release.keystore
 
-      # 2. Tworzenie pliku .env
-      - name: Create .env file
-        env:
-          X_API_KEY: ${{ secrets.X_API_KEY }}
-        run: |
-          echo "X_API_KEY=$X_API_KEY" > .env
-
       # 3. Budowanie surowego APK przez Flet
       - name: Build Raw APK
         run: |
