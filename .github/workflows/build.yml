@@ -23,11 +23,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install flet
 
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
+
+      - name: Create .env file
+        run: |
+          touch .env
 
       - name: Prepare Keystore File
         env:
