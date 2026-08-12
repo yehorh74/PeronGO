@@ -12,7 +12,7 @@ class SettingsScreen(ft.View):
 
         self.appbar = ft.AppBar(
             leading=self.back_btn,
-            title=ft.Text("USTAWIENIA"),
+            title=ft.Text("Ustawienia"),
             center_title=True,             
             #bgcolor=ft.Colors.SURFACE_CONTAINER_HIGHEST,
             #actions=[self.settings_btn]

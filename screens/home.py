@@ -166,6 +166,14 @@ class HomeScreen(ft.View):
 
         self.controls = [self.centered_container]
 
+    def get_station_object(self, input_name: str) -> dict | None:
+        search_term = input_name.strip().lower()
+        for station in self.stations:
+            if isinstance(station, dict):
+                if station.get("name", "").lower() == search_term:
+                    return station
+        return None
+
     def handle_search_submit(self, e):
         raw_station = self.stations_search.value.strip() if self.stations_search.value else ""
         date = getattr(self, "selected_date", None)
@@ -177,9 +185,9 @@ class HomeScreen(ft.View):
             self.show_error_dialog("Brak stacji", "Musisz wpisać lub wybrać stację z listy.")
             return
 
-        matched_station = self.validate_station_name(raw_station)
+        station_obj = self.get_station_object(raw_station)
 
-        if not matched_station:
+        if not station_obj:
             self.highlight_search_error(True)
             self.show_error_dialog(
                 "Nie znaleziono stacji", 
@@ -188,11 +196,14 @@ class HomeScreen(ft.View):
             return
 
         self.highlight_search_error(False)
-        self.stations_search.value = matched_station  #
-        self.stations_search.update()
-
-        print(f"Pomyślnie wybrano stację: {matched_station} | Data: {date} | Czas: {time} | Typ: {search_type}")
-        # self.app.navigate_to("/results")
+        
+        self.app.show_results(
+            station_name=station_obj["name"],
+            station_id=station_obj["id"],
+            date_str=date,
+            time_str=time,
+            search_type=search_type
+        )
 
     def highlight_search_error(self, is_error: bool):
         if is_error:

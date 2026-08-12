@@ -40,7 +40,6 @@ jobs:
         run: |
           printf '%s' "$KEYSTORE_BASE64" | base64 -d > release.keystore
 
-      # 3. Budowanie surowego APK przez Flet
       - name: Build Raw APK
         run: |
           flet build apk --python-version 3.12 --arch arm64-v8a \
@@ -48,7 +47,6 @@ jobs:
             --build-number ${{ github.run_number }} \
             -o dist/apk
 
-      # 4. Podpisywanie APK (z bezpiecznym odczytem haseł z ENV)
       - name: Sign APK with Android SDK apksigner
         env:
           KS_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -65,7 +63,6 @@ jobs:
             --key-pass env:KEY_PASS \
             "$APK_FILE"
 
-      # 5. Budowanie surowego AAB przez Flet
       - name: Build Raw AAB
         run: |
           flet build aab --python-version 3.12 --arch arm64-v8a \
@@ -73,7 +70,6 @@ jobs:
             --build-number ${{ github.run_number }} \
             -o dist/aab
 
-      # 6. Podpisywanie AAB za pomocą jarsigner
       - name: Sign AAB with jarsigner
         env:
           KS_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -89,18 +85,15 @@ jobs:
             -keypass:env KEY_PASS \
             "$AAB_FILE" "$KEY_ALIAS"
 
-      # 7. Weryfikacja podpisu w logach
       - name: Verify APK Signature
         run: |
           APKSIGNER=$(find $ANDROID_SDK_ROOT/build-tools -name apksigner | tail -n 1)
           APK_FILE=$(find dist/apk -name "*.apk" | head -n 1)
           $APKSIGNER verify --print-certs "$APK_FILE"
 
-      # 8. Budowanie Web
       - name: Build Web
         run: flet build web --build-number ${{ github.run_number }} -o dist/web
 
-      # 9. Publikacja gotowych paczek
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
