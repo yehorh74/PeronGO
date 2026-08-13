@@ -9,7 +9,7 @@ class App:
     def __init__(self, page: ft.Page):
         self.page = page
         self.page.title = "PeronGO"
-        self.version = "0.2.0"
+        self.version = "0.2.1"
 
         page.locale_configuration = ft.LocaleConfiguration(
             supported_locales=[ft.Locale("pl", "PL")],

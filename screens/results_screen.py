@@ -1,5 +1,5 @@
 import flet as ft
-from core.bilkom_manager import BilkomManager
+from core.timetable_manager import TimetableManager
 
 class ResultsScreen(ft.View):
     def __init__(self, app, station_name: str, station_id: str, date_str: str, time_str: str, search_type: str):
@@ -47,23 +47,29 @@ class ResultsScreen(ft.View):
         self.loading_indicator = ft.Column(
             controls=[
                 ft.ProgressRing(),
-                ft.Text("Pobieranie rozkładu z BILKOM...", size=14, color=ft.Colors.GREY_600)
+                ft.Text("Pobieranie rozkładu z sieci...", size=14, color=ft.Colors.GREY_600)
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             alignment=ft.MainAxisAlignment.CENTER,
             expand=True
         )
 
+        self.centered_container = ft.Container(
+                    expand=True,  
+                    alignment=ft.Alignment.TOP_CENTER,
+                    content=self.loading_indicator
+                )
+
         self.controls = [
             self.header_info,
-            self.loading_indicator
+            self.centered_container
         ]
 
     def did_mount(self):
         self.load_data()
 
     def load_data(self):
-        data = BilkomManager.get_timetable(
+        data = TimetableManager.get_timetable(
             station_name=self.station_name,
             station_id=self.station_id,
             date_str=self.date_str,
@@ -71,8 +77,8 @@ class ResultsScreen(ft.View):
             is_arrival=self.is_arrival
         )
 
-        if self.loading_indicator in self.controls:
-            self.controls.remove(self.loading_indicator)
+        if self.centered_container in self.controls:
+            self.controls.remove(self.centered_container)
 
         if not data:
             self.controls.append(
@@ -85,7 +91,7 @@ class ResultsScreen(ft.View):
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         spacing=10
                     ),
-                    alignment=ft.Alignment.CENTER,
+                    alignment=ft.Alignment.TOP_CENTER,
                     expand=True
                 )
             )
