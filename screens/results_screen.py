@@ -88,7 +88,7 @@ class ResultsScreen(ft.View):
                             ft.Icon(ft.Icons.TRAIN_OUTLINED, size=48, color=ft.Colors.GREY_400),
                             ft.Text("Brak połączeń lub błąd połączenia z serwerem.", color=ft.Colors.GREY_600)
                         ],
-                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                        alignment=ft.CrossAxisAlignment.CENTER,
                         spacing=10
                     ),
                     alignment=ft.Alignment.TOP_CENTER,

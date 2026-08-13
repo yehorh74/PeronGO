@@ -9,6 +9,7 @@ class App:
     def __init__(self, page: ft.Page):
         self.page = page
         self.page.title = "PeronGO"
+        page.window.icon = "assets/PeronGO_icon.png"
         self.version = "0.2.1"
 
         page.locale_configuration = ft.LocaleConfiguration(
