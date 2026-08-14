@@ -83,4 +83,4 @@ async def main(page: ft.Page):
     await app.init_async()
 
 if __name__ == "__main__":
-    ft.run(main, assets_dir="assets")
+    ft.run(main, assets_dir="assets", web_renderer=ft.WebRenderer.SKWASM)
