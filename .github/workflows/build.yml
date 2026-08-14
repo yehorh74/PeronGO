@@ -118,7 +118,7 @@ jobs:
         run: |
           flet build web --build-number ${{ github.run_number }} \
             --base-url /${{ github.event.repository.name }}/ \
-            --web-renderer skwasm \
+            --web-renderer auto \
             -o dist/web
 
       - name: Upload Pages Artifact
