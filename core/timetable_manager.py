@@ -1,4 +1,4 @@
-import requests
+import httpx
 from bs4 import BeautifulSoup
 import re
 from datetime import datetime
@@ -16,7 +16,8 @@ class TimetableManager:
         station_id: str,
         date_str: str = None,
         time_str: str = None,
-        is_arrival: bool = False
+        is_arrival: bool = False,
+        is_web: bool = False  
     ) -> list[dict]:
         przyjazd_val = "true" if is_arrival else "false"
         
@@ -36,10 +37,21 @@ class TimetableManager:
             except Exception as e:
                 print(f"[!] Błąd formatowania daty: {e}. Używam domyślnego zapytania BILKOM.")
 
-        url = "https://bilkom.pl/stacje/tablica"
+        target_url = "https://bilkom.pl/stacje/tablica"
+
+        if is_web:
+            req_prep = httpx.Request("GET", target_url, params=params)
+            full_url = str(req_prep.url)
+            
+            final_url = f"https://corsproxy.io/?{full_url}"
+            final_params = None 
+        else:
+            final_url = target_url
+            final_params = params
 
         try:
-            res = requests.get(url, headers=TimetableManager.HEADERS, params=params, timeout=10)
+            with httpx.Client(timeout=10.0, follow_redirects=True) as client:
+                res = client.get(final_url, headers=TimetableManager.HEADERS, params=final_params)
 
             if res.status_code != 200:
                 print(f"[-] Błąd HTTP: {res.status_code}")

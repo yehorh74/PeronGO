@@ -10,7 +10,7 @@ class App:
         self.page = page
         self.page.title = "PeronGO"
         page.window.icon = "assets/icon.png"
-        self.version = "0.2.3"
+        self.version = "0.2.4"
 
         page.locale_configuration = ft.LocaleConfiguration(
             supported_locales=[ft.Locale("pl", "PL")],

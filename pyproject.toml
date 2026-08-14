@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "perongo"
-version = "0.2.3"
+version = "0.2.4"
 description = "PKP timetable and delays mobile app"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -12,9 +12,9 @@ authors = [{ name = "Yehor Horin", email = "danedred15@gmail.com" }]
 
 dependencies = [
     "flet",
-    "requests",
     "python-dotenv",
     "beautifulsoup4",
+    "httpx",
 ]
 
 [tool.uv]

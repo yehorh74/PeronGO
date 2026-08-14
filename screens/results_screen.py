@@ -69,12 +69,15 @@ class ResultsScreen(ft.View):
         self.load_data()
 
     def load_data(self):
+        is_web_platform = getattr(self.page, "web", False)
+
         data = TimetableManager.get_timetable(
             station_name=self.station_name,
             station_id=self.station_id,
             date_str=self.date_str,
             time_str=self.time_str,
-            is_arrival=self.is_arrival
+            is_arrival=self.is_arrival,
+            is_web=is_web_platform  
         )
 
         if self.centered_container in self.controls:
