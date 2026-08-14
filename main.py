@@ -10,7 +10,7 @@ class App:
         self.page = page
         self.page.title = "PeronGO"
         page.window.icon = "assets/icon.png"
-        self.version = "0.2.7"
+        self.version = "0.2.8"
 
         page.locale_configuration = ft.LocaleConfiguration(
             supported_locales=[ft.Locale("pl", "PL")],
@@ -83,4 +83,4 @@ async def main(page: ft.Page):
     await app.init_async()
 
 if __name__ == "__main__":
-    ft.run(main, assets_dir="assets", web_renderer=ft.WebRenderer.AUTO)
+    ft.run(main, web_renderer=ft.WebRenderer.AUTO)
