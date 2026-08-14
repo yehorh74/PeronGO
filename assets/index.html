@@ -14,9 +14,11 @@
         navigator.serviceWorker.register('flutter_service_worker.js');
       });
     }
+
+    var flet_web_pyodide = true;
   </script>
 
-  <script src="flutter.js" defer></script>
+  <script src="flet.js" defer></script>
 
   <style>
     body {
@@ -68,23 +70,10 @@
   </style>
 </head>
 <body>
-  <!-- Twój własny ekran ładowania -->
-  <div class="splash-container" id="splash">
+  <div class="splash-container" id="loading">
     <div class="spinner"></div>
     <div class="app-title">PeronGO</div>
     <p class="subtitle">Uruchamianie rozkładu jazdy...</p>
   </div>
-
-  <script>
-    window.addEventListener('load', function(ev) {
-      _flutter.loader.loadEntrypoint({
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
-        }
-      });
-    });
-  </script>
 </body>
 </html>
