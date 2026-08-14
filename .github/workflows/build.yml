@@ -5,6 +5,15 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -99,14 +108,31 @@ jobs:
           APK_FILE=$(find dist/apk -name "*.apk" | head -n 1)
           $APKSIGNER verify --print-certs "$APK_FILE"
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       - name: Build Web
         env:
           CI: "true"
           FLET_NON_INTERACTIVE: "true"
-        run: flet build web --build-number ${{ github.run_number }} -o dist/web
+        run: |
+          flet build web --build-number ${{ github.run_number }} \
+            --base-url /${{ github.event.repository.name }}/ \
+            -o dist/web
 
-      - name: Upload Artifacts
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'dist/web'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Upload Mobile Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: perongo-release-builds
-          path: dist/
+          name: perongo-mobile-builds
+          path: |
+            dist/apk
+            dist/aab

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "perongo"
-version = "0.2.1"
+version = "0.2.3"
 description = "PKP timetable and delays mobile app"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -28,10 +28,9 @@ company = "Yehor Horin"
 [tool.flet.app]
 path = "."
 assets = ["files"]
-assets_dir = "assets"
 
-[tool.flet.build.android]
-icon = "assets/PeronGO_icon.png"
+[tool.flet.icons]
+android = "assets/icon.png"
 
 [tool.flet.flutter.pubspec.dependency_overrides]
 flet = { git = { url = "https://github.com/flet-dev/flet.git", ref = "main", path = "packages/flet" } }
