@@ -1,0 +1,20 @@
+PeronGO Source-Available Non-Commercial License
+
+Copyright (c) 2026 Yehor Horin
+
+Permission is hereby granted to any person obtaining a copy of this software and associated documentation files (the "Software"), to inspect, study, test, and contribute to the source code for personal, non-commercial, and educational purposes only, subject to the following conditions:
+
+1. Non-Commercial Restrictions
+- No Commercial Use: You may not sell, rent, lease, sublicense, or otherwise commercialize the Software, in whole or in part.
+- No Monetization: You may not integrate advertisements, paid features, premium subscriptions, or any form of monetization into any build or derivative work of this Software.
+- No App Store / Public Distribution: You may not publish, upload, or distribute compiled binaries (including APK, AAB, EXE, or hosted Web versions) of this Software or its derivatives to any public application store (such as Google Play Store, Apple App Store) or web hosting service.
+
+2. Backend and API Usage Restrictions
+- Proprietary Service Access: This license grants NO rights to access, query, or interact with the official production backend services, APIs, or servers (including but not limited to `perongo-backend.onrender.com` or associated proxies).
+- *Independent Infrastructure: Any independent deployment, fork, or testing of this Software must use your own backend infrastructure and your own API credentials in full compliance with third-party data providers' terms of service (including PKP PLK S.A. API regulations).
+
+3. Trademark and Brand Rights
+- Brand Protection: The names "PeronGO", logos, icons, UI themes, and brand assets associated with this project are proprietary trademarks of the copyright holder. This license does not grant any rights to use these trademarks in any derivative works or promotional materials.
+
+4. Disclaimer of Warranty & Limitation of Liability
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
