@@ -1,8 +1,29 @@
 import os
 import httpx
-from dotenv import load_dotenv
 
-load_dotenv()
+def load_env_safely():
+    if "CLIENT_SIGNATURE" in os.environ:
+        return
+
+    env_paths = [
+        os.path.join(os.getcwd(), ".env"),
+        os.path.join(os.path.dirname(__file__), "..", ".env"),
+    ]
+
+    for path in env_paths:
+        if os.path.exists(path):
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    for line in f:
+                        line = line.strip()
+                        if line and not line.startswith("#") and "=" in line:
+                            key, val = line.split("=", 1)
+                            os.environ[key.strip()] = val.strip().strip('"').strip("'")
+                break
+            except Exception:
+                pass
+
+load_env_safely()
 
 class TimetableManager:
     BASE_URL = "https://perongo-backend.onrender.com"
