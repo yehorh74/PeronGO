@@ -2,7 +2,10 @@ import os
 import httpx
 from dotenv import load_dotenv
 
-load_dotenv()
+try:
+    load_dotenv()
+except Exception:
+    pass
 
 class TimetableManager:
     BASE_URL = "https://perongo-backend.onrender.com"
