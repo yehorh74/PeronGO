@@ -15,6 +15,7 @@ class ResultsScreen(ft.View):
         self.is_arrival = (search_type == "arrivals")
         
         self.is_running = False
+        self.is_paused = False  
 
         super().__init__(route="/results")
         self.setup_ui()
@@ -28,7 +29,6 @@ class ResultsScreen(ft.View):
         )
 
         self.live_time_text = ft.Text(self.time_str, weight=ft.FontWeight.BOLD)
-        
         self.last_update_text = ft.Text("Ostatnia aktualizacja: --:--:--", size=11, color=ft.Colors.GREY_500)
 
         self.header_info = ft.Container(
@@ -87,13 +87,25 @@ class ResultsScreen(ft.View):
     def did_mount(self):
         self.is_running = True
         
+        self.page.on_app_lifecycle_state_change = self._handle_lifecycle_change
+
         self.page.run_task(self._clock_loop)
-        
         self.page.run_task(self._initial_load_and_start_loop)
 
     def will_unmount(self):
         self.is_running = False
+        if self.page:
+            self.page.on_app_lifecycle_state_change = None
         super().will_unmount()
+
+    def _handle_lifecycle_change(self, e: ft.AppLifecycleStateChangeEvent):
+        state_str = str(e.state).lower()
+        if "pause" in state_str or "hidden" in state_str or "inactive" in state_str:
+            self.is_paused = True
+            print("[Lifecycle] Aplikacja w tle - wstrzymano odświeżanie.")
+        elif "resume" in state_str or "show" in state_str:
+            self.is_paused = False
+            print("[Lifecycle] Aplikacja na wierzchu - wznowiono odświeżanie.")
 
     async def _clock_loop(self):
         while self.is_running:
@@ -108,9 +120,14 @@ class ResultsScreen(ft.View):
         
         while self.is_running:
             await asyncio.sleep(self.REFRESH_INTERVAL)
-            if self.is_running:
-                current_time = datetime.now().strftime("%H:%M")
-                await self.refresh_timetable_data(time_override=current_time, is_initial=False)
+            if not self.is_running:
+                break
+            
+            if self.is_paused:
+                continue
+
+            current_time = datetime.now().strftime("%H:%M")
+            await self.refresh_timetable_data(time_override=current_time, is_initial=False)
 
     async def refresh_timetable_data(self, time_override: str = None, is_initial: bool = False):
         is_web_platform = getattr(self.page, "web", False) if self.page else False
@@ -154,7 +171,6 @@ class ResultsScreen(ft.View):
                 self.last_update_text.update()
         else:
             cards = self._build_cards(data)
-            
             self.results_list.controls = cards
 
             if self.main_content.content != self.results_list:

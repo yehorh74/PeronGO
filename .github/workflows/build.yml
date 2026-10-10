@@ -49,12 +49,6 @@ jobs:
         run: |
           printf '%s' "$KEYSTORE_BASE64" | base64 -d > release.keystore
 
-      - name: Create .env file
-        env:
-          CLIENT_SIGNATURE: ${{ secrets.CLIENT_SIGNATURE }}
-        run: |
-          echo "CLIENT_SIGNATURE=$CLIENT_SIGNATURE" > .env
-
       - name: Build Raw APK
         env:
           CI: "true"
