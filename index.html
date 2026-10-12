@@ -310,14 +310,12 @@
 
     <script>
         let currentLang = 'pl';
-        let currentSection = 'home';
 
         function switchLang(lang) {
             currentLang = lang;
             document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll(`.lang-${lang}`).forEach(el => el.classList.add('active'));
             
-            // Update nav labels based on lang
             if(lang === 'pl') {
                 document.getElementById('nav-home').innerText = 'Strona Główna';
                 document.getElementById('nav-privacy').innerText = 'Polityka Prywatności';
@@ -329,19 +327,41 @@
             }
         }
 
-        function showSection(sectionId) {
-            currentSection = sectionId;
+        function showSection(sectionId, updateHash = true) {
             document.querySelectorAll('.section-view').forEach(el => el.style.display = 'none');
-            document.getElementById(`section-${sectionId}`).style.display = 'block';
+            const target = document.getElementById(`section-${sectionId}`);
+            if (target) {
+                target.style.display = 'block';
+            }
 
             document.querySelectorAll('nav a').forEach(el => el.classList.remove('active'));
-            document.getElementById(`nav-${sectionId}`).classList.add('active');
+            const navEl = document.getElementById(`nav-${sectionId}`);
+            if (navEl) {
+                navEl.classList.add('active');
+            }
 
+            if (updateHash) {
+                window.location.hash = sectionId;
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Initialize default lang
-        switchLang('pl');
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash === 'privacy' || hash === 'terms' || hash === 'home') {
+                showSection(hash, false);
+            } else {
+                showSection('home', false);
+            }
+            switchLang('pl');
+        });
+
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash === 'privacy' || hash === 'terms' || hash === 'home') {
+                showSection(hash, false);
+            }
+        });
     </script>
 </body>
 </html>
