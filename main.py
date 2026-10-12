@@ -5,10 +5,12 @@ from screens.home import HomeScreen
 from screens.settings import SettingsScreen
 from screens.results_screen import ResultsScreen
 
+from core.i18n import init_i18n, _
+
 class App:
     def __init__(self, page: ft.Page):
         self.page = page
-        self.page.title = "PeronGO"
+        self.page.title = _("PeronGO")
         page.window.icon = "assets/icon.png"
         self.version = "0.2.8"
 
@@ -16,6 +18,10 @@ class App:
             supported_locales=[ft.Locale("pl", "PL")],
             current_locale=ft.Locale("pl", "PL"),
         )
+
+        self.url_launcher = ft.UrlLauncher()
+
+        init_i18n()
 
     async def init_async(self):
         prefs = ft.SharedPreferences()

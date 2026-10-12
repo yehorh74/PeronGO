@@ -1,0 +1,246 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PeronGO\n"
+"POT-Creation-Date: 2026-10-12 22:44+0200\n"
+"PO-Revision-Date: 2026-10-12 22:46+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-KeywordsList: _\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: core/timetable_manager.py:75
+#, python-brace-format
+msgid "Brak połączeń dla stacji '{station_name}' (ID: {station_id})."
+msgstr "No connections for station '{station_name}' (ID: {station_id})."
+
+#: core/timetable_manager.py:78
+msgid "Odmowa dostępu (403): Błąd autoryzacji Firebase."
+msgstr "Access Denied (403): Firebase authorization error."
+
+#: core/timetable_manager.py:80
+#, python-brace-format
+msgid "Błąd serwera HTTP {status_code}: {text}"
+msgstr "HTTP server error {status_code}: {text}"
+
+#: core/timetable_manager.py:83
+msgid "Błąd połączenia z backendem."
+msgstr "Error connecting to backend."
+
+#: core/timetable_manager.py:85
+msgid "Błąd przekroczenia czasu (Timeout)."
+msgstr "Timeout error."
+
+#: core/timetable_manager.py:87
+#, python-brace-format
+msgid ""
+"Błąd: {type_name}\n"
+"{error_msg}"
+msgstr ""
+"Error: {type_name}\n"
+"{error_msg}"
+
+#: main.py:13 screens/home.py:43
+msgid "PeronGO"
+msgstr "PeronGO"
+
+#: screens/home.py:52
+msgid "Szukaj stacji..."
+msgstr "Search for stations..."
+
+#: screens/home.py:53
+msgid "Wybierz stację..."
+msgstr "Select a station..."
+
+#: screens/home.py:76 screens/home.py:242
+msgid "OK"
+msgstr "OK"
+
+#: screens/home.py:77
+msgid "Anuluj"
+msgstr "Cancel"
+
+#: screens/home.py:78
+msgid "Niepoprawny czas"
+msgstr "Incorrect time"
+
+#: screens/home.py:95 screens/results_screen.py:26
+msgid "Odjazdy"
+msgstr "Departures"
+
+#: screens/home.py:96 screens/results_screen.py:26
+msgid "Przyjazdy"
+msgstr "Arrivals"
+
+#: screens/home.py:103
+msgid "Pokaż rozkład"
+msgstr "Show schedule"
+
+#: screens/home.py:110
+msgid "Rozkład jazdy na żywo"
+msgstr "Live timetable"
+
+#: screens/home.py:117
+msgid ""
+"Wyszukaj stację, wybierz datę i sprawdź aktualne odjazdy lub przyjazdy "
+"pociągów."
+msgstr ""
+"Search for a station, select a date and check current train departures or "
+"arrivals."
+
+#: screens/home.py:187
+msgid "Brak stacji"
+msgstr "No stations"
+
+#: screens/home.py:187
+msgid "Musisz wpisać lub wybrać stację z listy."
+msgstr "You must enter or select a station from the list."
+
+#: screens/home.py:195
+msgid "Nie znaleziono stacji"
+msgstr "No stations found"
+
+#: screens/home.py:196
+#, python-brace-format
+msgid ""
+"Stacja '{raw_station}' nie znajduje się w naszej bazie. Wybierz stację z "
+"listy podpowiedzi."
+msgstr ""
+"The station '{raw_station}' is not in our database. Please select a station "
+"from the suggested list."
+
+#: screens/results_screen.py:34
+msgid "Ostatnia aktualizacja: --:--:--"
+msgstr "Last update: --:--:--"
+
+#: screens/results_screen.py:71
+msgid "Pobieranie rozkładu z sieci..."
+msgstr "Downloading a timetable from the web..."
+
+#: screens/results_screen.py:152
+msgid "Brak połączeń dla wybranej stacji."
+msgstr "No connections for the selected station."
+
+#: screens/results_screen.py:171
+#, python-brace-format
+msgid "Błąd odświeżania ({datetime})"
+msgstr "Refresh error ({datetime})"
+
+#: screens/results_screen.py:185
+#, python-brace-format
+msgid "Ostatnia aktualizacja: {datetime}"
+msgstr "Last update: {datetime}"
+
+#: screens/results_screen.py:195
+msgid "O czasie"
+msgstr "On time"
+
+#: screens/results_screen.py:203
+msgid "--:--"
+msgstr "--:--"
+
+#: screens/results_screen.py:212 screens/results_screen.py:213
+msgid "Brak informacji"
+msgstr "No information available"
+
+#: screens/results_screen.py:213
+#, python-brace-format
+msgid "Pociąg: {pociag}"
+msgstr "Train: {pociag}"
+
+#: screens/results_screen.py:220
+msgid "Peron/Tor"
+msgstr "Platform/Track"
+
+#: screens/results_screen.py:221
+msgid "-/-"
+msgstr "-/-"
+
+#: screens/settings.py:18
+msgid "Ustawienia"
+msgstr "Settings"
+
+#: screens/settings.py:27
+msgid "Język"
+msgstr "Language"
+
+#: screens/settings.py:34
+msgid "Polski"
+msgstr "Polish"
+
+#: screens/settings.py:41
+msgid "Angielski"
+msgstr "English "
+
+#: screens/settings.py:67
+msgid "Motyw"
+msgstr "Theme"
+
+#: screens/settings.py:74
+msgid "Systemowy"
+msgstr "System"
+
+#: screens/settings.py:81
+msgid "Jasny"
+msgstr "Light"
+
+#: screens/settings.py:88
+msgid "Ciemny"
+msgstr "Dark"
+
+#: screens/settings.py:107
+msgid "Informacja o aplikacji"
+msgstr "Application Information"
+
+#: screens/settings.py:114
+msgid "Polityka prywatności"
+msgstr "Privacy Policy"
+
+#: screens/settings.py:120
+msgid "Warunki korzystania"
+msgstr "Terms of Use"
+
+#: screens/settings.py:130
+msgid ""
+"\n"
+"        ### 📜 Licencje i Źródła Danych / Licenses & Data Sources\n"
+"\n"
+"        **PeronGO** korzysta z otwartych technologii oraz danych "
+"publicznych:\n"
+"\n"
+"        * **[Flet Framework](https://flet.dev)** — Licencja Apache 2.0\n"
+"        * **[Python](https://www.python.org)** — Licencja Python Software "
+"Foundation (PSF)\n"
+"        * **[Firebase / Google Identity](https://firebase.google.com)** — "
+"Usługa uwierzytelniania Google Cloud\n"
+"        * **[Otwarte dane kolejowe (PKP PLK)](https://pdp-api.plk-sa.pl/)** "
+"— Dane o rozkładach jazdy i opóźnieniach pociągów pobierane z publicznie "
+"dostępnych interfejsów informacyjnych.\n"
+"\n"
+"        ---\n"
+"        *Aplikacja nie jest oficjalną aplikacją PKP PLK. Wszystkie znaki "
+"towarowe należą do ich prawnych właścicieli.*\n"
+"        "
+msgstr ""
+"\n"
+"        ### 📜 Licencje i Źródła Danych / Licenses & Data Sources\n"
+"\n"
+"        **PeronGO** uses open technologies and public data:\n"
+"\n"
+"        * **[Flet Framework](https://flet.dev)** — Apache 2.0 License\n"
+"        * **[Python](https://www.python.org)** — Python Software Foundation "
+"(PSF) License\n"
+"        * **[Firebase / Google Identity](https://firebase.google.com)** — "
+"Google Cloud Authentication Service\n"
+"        * **[Open Railway Data (PKP PLK)](https://pdp-api.plk-sa.pl/)** — "
+"Train timetable and delay data retrieved from publicly available "
+"information interfaces.\n"
+"\n"
+"        ---\n"
+"        *This application is not an official PKP PLK application. All "
+"trademarks are the property of their respective owners.*"

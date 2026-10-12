@@ -3,6 +3,8 @@ import os
 import flet as ft
 import datetime
 
+from core.i18n import _
+
 class HomeScreen(ft.View):
     def __init__(self, app):
         self.app = app
@@ -38,7 +40,7 @@ class HomeScreen(ft.View):
 
         self.appbar = ft.AppBar(
             leading=self.info,
-            title=ft.Text("PeronGO"),
+            title=ft.Text(_("PeronGO")),
             center_title=True,             
             #bgcolor=ft.Colors.SURFACE_CONTAINER_HIGHEST,
             actions_padding=10,
@@ -47,8 +49,8 @@ class HomeScreen(ft.View):
 
         self.stations_search = ft.SearchBar(
             bar_leading=ft.IconButton(icon=ft.Icons.TRAIN),
-            bar_hint_text="Szukaj stacji...",
-            view_hint_text="Wybierz stację...",
+            bar_hint_text=_("Szukaj stacji..."),
+            view_hint_text=_("Wybierz stację..."),
             bar_shape=ft.RoundedRectangleBorder(radius=10),
             bar_border_side=ft.BorderSide(width=1, color=ft.Colors.OUTLINE),
             view_elevation=4,
@@ -65,15 +67,15 @@ class HomeScreen(ft.View):
         )
 
         button_style = ft.ButtonStyle(
-            padding=ft.Padding.symmetric(horizontal=8, vertical=5), # Mniejszy wewnętrzny margines
+            padding=ft.Padding.symmetric(horizontal=8, vertical=5), 
         )
 
         self.date_btn = ft.OutlinedButton(content=self.selected_date, icon=ft.Icons.CALENDAR_MONTH, on_click=self.open_date_picker, style=button_style, width=float("inf"))
 
         self.time_picker = ft.TimePicker(
-            confirm_text="OK",
-            cancel_text="Anuluj",
-            error_invalid_text="Niepoprawny czas",
+            confirm_text=_("OK"),
+            cancel_text=_("Anuluj"),
+            error_invalid_text=_("Niepoprawny czas"),
             on_change=self.handle_time_change,
         )
 
@@ -90,29 +92,29 @@ class HomeScreen(ft.View):
             on_change=self.handle_type_change,
             content=ft.Row(
                 controls=[
-                    ft.Radio(value="departures", label="Odjazdy"),
-                    ft.Radio(value="arrivals", label="Przyjazdy"),
+                    ft.Radio(value="departures", label=_("Odjazdy")),
+                    ft.Radio(value="arrivals", label=_("Przyjazdy")),
                 ],
                 spacing=10
             )
         )
 
         self.submit_btn = ft.FilledButton(
-            content="Pokaż rozkład",
+            content=_("Pokaż rozkład"),
             icon=ft.Icons.SEARCH,
             width=float("inf"),  
             on_click=self.handle_search_submit,
         )
 
         self.title = ft.Text(
-                            "Rozkład jazdy na żywo",
+                            _("Rozkład jazdy na żywo"),
                             size=24,
                             weight=ft.FontWeight.BOLD,
                             text_align=ft.TextAlign.CENTER,
                         )
 
         self.subtitle = ft.Text(
-                            "Wyszukaj stację, wybierz datę i sprawdź aktualne odjazdy lub przyjazdy pociągów.",
+                            _("Wyszukaj stację, wybierz datę i sprawdź aktualne odjazdy lub przyjazdy pociągów."),
                             size=14,
                             color=ft.Colors.ON_SURFACE_VARIANT,
                             text_align=ft.TextAlign.CENTER,
@@ -182,7 +184,7 @@ class HomeScreen(ft.View):
 
         if not raw_station:
             self.highlight_search_error(True)
-            self.show_error_dialog("Brak stacji", "Musisz wpisać lub wybrać stację z listy.")
+            self.show_error_dialog(_("Brak stacji"), _("Musisz wpisać lub wybrać stację z listy."))
             return
 
         station_obj = self.get_station_object(raw_station)
@@ -190,8 +192,8 @@ class HomeScreen(ft.View):
         if not station_obj:
             self.highlight_search_error(True)
             self.show_error_dialog(
-                "Nie znaleziono stacji", 
-                f"Stacja '{raw_station}' nie znajduje się w naszej bazie. Wybierz stację z listy podpowiedzi."
+                _("Nie znaleziono stacji"), 
+                _("Stacja '{raw_station}' nie znajduje się w naszej bazie. Wybierz stację z listy podpowiedzi.").format(raw_station=raw_station)
             )
             return
 
@@ -237,7 +239,7 @@ class HomeScreen(ft.View):
             ),
             content=ft.Text(message),
             actions=[
-                ft.TextButton("OK", on_click=close_dialog)
+                ft.TextButton(_("OK"), on_click=close_dialog)
             ],
             actions_alignment=ft.MainAxisAlignment.END,
         )

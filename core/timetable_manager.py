@@ -2,6 +2,8 @@ import os
 import httpx
 from dotenv import load_dotenv
 
+from core.i18n import _
+
 try:
     load_dotenv()
 except Exception:
@@ -70,16 +72,16 @@ class TimetableManager:
             if res.status_code == 200:
                 data = res.json()
                 if isinstance(data, list) and len(data) == 0:
-                    return [], f"Brak połączeń dla stacji '{station_name or station_id}'."
+                    return [], _("Brak połączeń dla stacji '{station_name}' (ID: {station_id}).").format(station_name=station_name, station_id=station_id)
                 return data, None
             elif res.status_code == 403:
-                return [], f"Odmowa dostępu (403): Błąd autoryzacji Firebase."
+                return [], _("Odmowa dostępu (403): Błąd autoryzacji Firebase.")
             else:
-                return [], f"Błąd serwera HTTP {res.status_code}: {res.text}"
+                return [], _("Błąd serwera HTTP {status_code}: {text}").format(status_code=res.status_code, text=res.text)
 
         except httpx.ConnectError:
-            return [], f"Błąd połączenia z backendem."
+            return [], _("Błąd połączenia z backendem.")
         except httpx.TimeoutException:
-            return [], "Błąd przekroczenia czasu (Timeout)."
+            return [], _("Błąd przekroczenia czasu (Timeout).")
         except Exception as e:
-            return [], f"Błąd: {type(e).__name__}\n{str(e)}"
+            return [], _("Błąd: {type_name}\n{error_msg}").format(type_name=type(e).__name__, error_msg=str(e))

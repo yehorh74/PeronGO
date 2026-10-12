@@ -3,6 +3,8 @@ from datetime import datetime
 import flet as ft
 from core.timetable_manager import TimetableManager
 
+from core.i18n import _
+
 class ResultsScreen(ft.View):
     REFRESH_INTERVAL = 120
 
@@ -21,7 +23,7 @@ class ResultsScreen(ft.View):
         self.setup_ui()
 
     def setup_ui(self):
-        title_type = "Przyjazdy" if self.is_arrival else "Odjazdy"
+        title_type = _("Przyjazdy") if self.is_arrival else _("Odjazdy")
         self.appbar = ft.AppBar(
             leading=ft.IconButton(ft.Icons.ARROW_BACK, on_click=lambda _: self.app.navigate_to("/home")),
             title=ft.Text(f"{title_type}: {self.station_name}"),
@@ -29,7 +31,7 @@ class ResultsScreen(ft.View):
         )
 
         self.live_time_text = ft.Text(self.time_str, weight=ft.FontWeight.BOLD)
-        self.last_update_text = ft.Text("Ostatnia aktualizacja: --:--:--", size=11, color=ft.Colors.GREY_500)
+        self.last_update_text = ft.Text(_("Ostatnia aktualizacja: --:--:--"), size=11, color=ft.Colors.GREY_500)
 
         self.header_info = ft.Container(
             content=ft.Column(
@@ -66,7 +68,7 @@ class ResultsScreen(ft.View):
         self.loading_indicator = ft.Column(
             controls=[
                 ft.ProgressRing(),
-                ft.Text("Pobieranie rozkładu z sieci...", size=14, color=ft.Colors.GREY_600)
+                ft.Text(_("Pobieranie rozkładu z sieci..."), size=14, color=ft.Colors.GREY_600)
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             alignment=ft.MainAxisAlignment.CENTER,
@@ -147,7 +149,7 @@ class ResultsScreen(ft.View):
 
         if error_msg or not data:
             if is_initial or self.main_content.content == self.loading_indicator:
-                message = error_msg if error_msg else "Brak połączeń dla wybranej stacji."
+                message = error_msg if error_msg else _("Brak połączeń dla wybranej stacji.")
                 icon = ft.Icons.ERROR_OUTLINE if error_msg else ft.Icons.TRAIN_OUTLINED
                 icon_color = ft.Colors.RED_400 if error_msg else ft.Colors.GREY_400
 
@@ -166,7 +168,7 @@ class ResultsScreen(ft.View):
                 )
                 self.main_content.update()
             else:
-                self.last_update_text.value = f"Błąd odświeżania ({datetime.now().strftime('%H:%M:%S')})"
+                self.last_update_text.value = _("Błąd odświeżania ({datetime})").format(datetime=datetime.now().strftime('%H:%M:%S'))
                 self.last_update_text.color = ft.Colors.RED_400
                 self.last_update_text.update()
         else:
@@ -179,15 +181,18 @@ class ResultsScreen(ft.View):
             else:
                 self.results_list.update()
 
-            self.last_update_text.value = f"Ostatnia aktualizacja: {datetime.now().strftime('%H:%M:%S')}"
+            
+            self.last_update_text.value = _("Ostatnia aktualizacja: {datetime}").format(datetime=datetime.now().strftime('%H:%M:%S'))
             self.last_update_text.color = ft.Colors.GREY_500
             self.last_update_text.update()
 
     def _build_cards(self, data: list[dict]) -> list[ft.Control]:
         cards = []
         for item in data:
-            delay = item.get("opoznienie", "o czasie")
-            delay_color = ft.Colors.GREEN_600 if delay == "o czasie" else ft.Colors.RED_600
+            delay = item.get("opoznienie", "no_delay")
+            delay_color = ft.Colors.GREEN_600 if delay == "no_delay" else ft.Colors.RED_600
+
+            delay_text = _("O czasie") if delay == "no_delay" else delay
             
             card = ft.Card(
                 content=ft.Container(
@@ -195,8 +200,8 @@ class ResultsScreen(ft.View):
                         controls=[
                             ft.Column(
                                 controls=[
-                                    ft.Text(item.get("godzina", "--:--"), size=18, weight=ft.FontWeight.BOLD),
-                                    ft.Text(delay, size=12, color=delay_color, weight=ft.FontWeight.BOLD)
+                                    ft.Text(item.get("godzina", _("--:--")), size=18, weight=ft.FontWeight.BOLD),
+                                    ft.Text(delay_text, size=12, color=delay_color, weight=ft.FontWeight.BOLD)
                                 ],
                                 alignment=ft.MainAxisAlignment.CENTER,
                                 width=75
@@ -204,16 +209,16 @@ class ResultsScreen(ft.View):
                             ft.VerticalDivider(width=1),
                             ft.Column(
                                 controls=[
-                                    ft.Text(item.get("kierunek", "Brak informacji"), size=14, weight=ft.FontWeight.BOLD, max_lines=2),
-                                    ft.Text(f"Pociąg: {item.get('pociag', '-')}", size=12, color=ft.Colors.GREY_500)
+                                    ft.Text(item.get("kierunek", _("Brak informacji")), size=14, weight=ft.FontWeight.BOLD, max_lines=2),
+                                    ft.Text(_("Pociąg: {pociag}").format(pociag=item.get("pociag", _("Brak informacji"))), size=12, color=ft.Colors.GREY_500)
                                 ],
                                 expand=True,
                                 alignment=ft.MainAxisAlignment.CENTER
                             ),
                             ft.Column(
                                 controls=[
-                                    ft.Text("Peron/Tor", size=10, color=ft.Colors.GREY_500),
-                                    ft.Text(item.get("peron", "-/-"), size=13, weight=ft.FontWeight.BOLD)
+                                    ft.Text(_("Peron/Tor"), size=10, color=ft.Colors.GREY_500),
+                                    ft.Text(item.get("peron", _("-/-")), size=13, weight=ft.FontWeight.BOLD)
                                 ],
                                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                                 alignment=ft.MainAxisAlignment.CENTER
