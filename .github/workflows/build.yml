@@ -57,7 +57,10 @@ jobs:
         run: |
           AAB_FILE=$(find dist/aab -name "*.aab" | head -n 1)
           
-          echo "Podpisywanie pliku: $AAB_FILE"
+          echo "Usuwanie wstępnych/starych podpisów z: $AAB_FILE"
+          zip -d "$AAB_FILE" "META-INF/*.SF" "META-INF/*.RSA" "META-INF/*.DSA" "META-INF/*.MF" 2>/dev/null || true
+          
+          echo "Podpisywanie pliku czystego AAB: $AAB_FILE"
           jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 \
             -keystore release.keystore \
             -storepass:env KS_PASS \
