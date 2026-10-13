@@ -1,5 +1,7 @@
 import os
+import sys
 import httpx
+import platform
 from dotenv import load_dotenv
 
 from core.i18n import _
@@ -12,9 +14,20 @@ except Exception:
 
 class TimetableManager:
     BASE_URL = "https://perongo-backend.onrender.com"
-    FIREBASE_API_KEY = "AIzaSyA9bVoD8HSCoychV7Qgn1DJmeC6RreBl3o"
+    
+    API_KEY_ANDROID = "AIzaSyA9bVoD8HSCoychV7Qgn1DJmeC6RreBl3o"
+    API_KEY_WEB = "AIzaSyAcN5-1Lzq5le7K_nqSosTy9HiKXkQqwrA"
     
     _cached_token: str = None
+
+    @classmethod
+    def _get_api_key(cls) -> str:
+        is_web = (sys.platform == "emscripten" or platform.system() == "Emscripten")
+        
+        if is_web:
+            return os.getenv("FIREBASE_API_KEY_WEB", cls.API_KEY_WEB)
+        else:
+            return os.getenv("FIREBASE_API_KEY_ANDROID", cls.API_KEY_ANDROID)
 
     @classmethod
     async def _get_auth_token(cls) -> str:
@@ -25,7 +38,9 @@ class TimetableManager:
         if cls._cached_token:
             return cls._cached_token
 
-        url = f"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={cls.FIREBASE_API_KEY}"
+        api_key = cls._get_api_key()
+        url = f"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={api_key}"
+        
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:
                 res = await client.post(url, json={"returnSecureToken": True})
@@ -33,6 +48,8 @@ class TimetableManager:
                     data = res.json()
                     cls._cached_token = data.get("idToken", "")
                     return cls._cached_token
+                else:
+                    debug_print(f"[Auth Error] Status {res.status_code}: {res.text}")
         except Exception as e:
             debug_print(f"[Auth Error] Nie udało się pobrać tokenu anonimowego: {e}")
 

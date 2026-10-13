@@ -14,4 +14,4 @@ pip install flet==0.86.5
 
 echo "--- Budowanie aplikacji Flet Web ---"
 export FLET_NON_INTERACTIVE="true"
-flet build web --web-renderer html --build-number 1 -o dist/web
+flet build web --build-number 1 -o dist/web
