@@ -3,6 +3,7 @@ import httpx
 from dotenv import load_dotenv
 
 from core.i18n import _
+from core.logger import debug_print
 
 try:
     load_dotenv()
@@ -33,7 +34,7 @@ class TimetableManager:
                     cls._cached_token = data.get("idToken", "")
                     return cls._cached_token
         except Exception as e:
-            print(f"[Auth Error] Nie udało się pobrać tokenu anonimowego: {e}")
+            debug_print(f"[Auth Error] Nie udało się pobrać tokenu anonimowego: {e}")
 
         return ""
 

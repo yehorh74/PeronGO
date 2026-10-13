@@ -2,8 +2,10 @@ import json
 import os
 import flet as ft
 import datetime
+import webbrowser
 
 from core.i18n import _
+from core.logger import debug_print
 
 class HomeScreen(ft.View):
     def __init__(self, app):
@@ -28,14 +30,14 @@ class HomeScreen(ft.View):
                         self.stations = data["stations"]
                     else:
                         self.stations = data
-                    print(f"Pomyślnie załadowano stacje. Liczba wpisów: {len(self.stations)}")
+                    debug_print(f"Pomyślnie załadowano stacje. Liczba wpisów: {len(self.stations)}")
             else:
-                print(f"Brak pliku stacji pod ścieżką: {json_path}")
+                debug_print(f"Brak pliku stacji pod ścieżką: {json_path}")
         except Exception as ex:
-            print(f"Błąd podczas wczytywania stacji: {ex}")
+            debug_print(f"Błąd podczas wczytywania stacji: {ex}")
 
     def setup_ui(self):
-        self.info = ft.IconButton(ft.Icons.HELP)
+        self.info = ft.IconButton(ft.Icons.HELP, on_click=lambda _: webbrowser.open("https://yehorh74.github.io/PeronGO"))
         self.settings_btn = ft.IconButton(ft.Icons.SETTINGS, on_click=lambda _: self.app.navigate_to("/settings"))
 
         self.appbar = ft.AppBar(
@@ -260,7 +262,7 @@ class HomeScreen(ft.View):
             self.date_btn.content = self.selected_date
             self.date_btn.update()
             
-            print(f"Zapisano w self.selected_date: {self.selected_date}")
+            debug_print(f"Zapisano w self.selected_date: {self.selected_date}")
 
     def open_time_picker(self, e):
         self.page.show_dialog(self.time_picker)
@@ -273,11 +275,11 @@ class HomeScreen(ft.View):
             self.time_btn.content = self.selected_time
             self.time_btn.update()
             
-            print(f"Zapisano w self.selected_time: {self.selected_time}")
+            debug_print(f"Zapisano w self.selected_time: {self.selected_time}")
 
     def handle_type_change(self, e):
         self.search_type = e.control.value
-        print(f"Zmieniono typ wyszukiwania na: {self.search_type}")
+        debug_print(f"Zmieniono typ wyszukiwania na: {self.search_type}")
 
     async def open_search_view(self, e):
         query = (self.stations_search.value or "").strip().lower()
@@ -305,7 +307,7 @@ class HomeScreen(ft.View):
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.LOCATION_ON),
                         title=ft.Text(station_name),
-                        on_click=lambda _, name=station_name: self.select_station(name)
+                        on_click=lambda e, name=station_name: self.page.run_task(self.select_station, name)
                     )
                 )
 
@@ -315,13 +317,13 @@ class HomeScreen(ft.View):
         self.stations_search.controls = filtered_results
         self.stations_search.update()
 
-    def select_station(self, station_name: str):
+    async def select_station(self, station_name: str):
         self.stations_search.value = station_name
-        self.stations_search.close_view(station_name)
+        await self.stations_search.close_view(station_name)
         self.stations_search.update()
-        print(f"Wybrano stację: {station_name}")
+        debug_print(f"Wybrano stację: {station_name}")
 
     def handle_station_select(self, e):
-        print(f"Zatwierdzono stację: {e.data}")
+        debug_print(f"Zatwierdzono stację: {e.data}")
         
     

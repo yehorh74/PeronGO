@@ -1,4 +1,5 @@
 import os
+import warnings
 import flet as ft
 
 from screens.home import HomeScreen
@@ -6,13 +7,16 @@ from screens.settings import SettingsScreen
 from screens.results_screen import ResultsScreen
 
 from core.i18n import init_i18n, _
+from core.logger import debug_print
+
+warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 class App:
     def __init__(self, page: ft.Page):
         self.page = page
         self.page.title = _("PeronGO")
         page.window.icon = "assets/icon.png"
-        self.version = "0.2.8"
+        self.version = "0.4.0"
 
         page.locale_configuration = ft.LocaleConfiguration(
             supported_locales=[ft.Locale("pl", "PL")],
@@ -75,13 +79,13 @@ class App:
         self.page.update()
 
     def show_results(self, station_name, station_id, date_str, time_str, search_type):
-        print("==========================================")
-        print(f"[MAIN DEBUG] Nazwa stacji: '{station_name}' (typ: {type(station_name)})")
-        print(f"[MAIN DEBUG] ID stacji:    '{station_id}' (typ: {type(station_id)})")
-        print(f"[MAIN DEBUG] Data:         '{date_str}'")
-        print(f"[MAIN DEBUG] Czas:         '{time_str}'")
-        print(f"[MAIN DEBUG] Typ:          '{search_type}'")
-        print("==========================================", flush=True)
+        debug_print("==========================================")
+        debug_print(f"[MAIN DEBUG] Nazwa stacji: '{station_name}' (typ: {type(station_name)})")
+        debug_print(f"[MAIN DEBUG] ID stacji:    '{station_id}' (typ: {type(station_id)})")
+        debug_print(f"[MAIN DEBUG] Data:         '{date_str}'")
+        debug_print(f"[MAIN DEBUG] Czas:         '{time_str}'")
+        debug_print(f"[MAIN DEBUG] Typ:          '{search_type}'")
+        debug_print("==========================================", flush=True)
         self.current_search_params = {
             "station_name": station_name,
             "station_id": station_id,

@@ -4,6 +4,7 @@ import flet as ft
 from core.timetable_manager import TimetableManager
 
 from core.i18n import _
+from core.logger import debug_print
 
 class ResultsScreen(ft.View):
     REFRESH_INTERVAL = 120
@@ -104,10 +105,10 @@ class ResultsScreen(ft.View):
         state_str = str(e.state).lower()
         if "pause" in state_str or "hidden" in state_str or "inactive" in state_str:
             self.is_paused = True
-            print("[Lifecycle] Aplikacja w tle - wstrzymano odświeżanie.")
+            debug_print("[Lifecycle] Aplikacja w tle - wstrzymano odświeżanie.")
         elif "resume" in state_str or "show" in state_str:
             self.is_paused = False
-            print("[Lifecycle] Aplikacja na wierzchu - wznowiono odświeżanie.")
+            debug_print("[Lifecycle] Aplikacja na wierzchu - wznowiono odświeżanie.")
 
     async def _clock_loop(self):
         while self.is_running:

@@ -17,7 +17,7 @@ def init_i18n(lang_code: str = None):
 
     if not lang_code:
         try:
-            sys_lang, _ = locale.getdefaultlocale()
+            sys_lang, _ = locale.getlocale()
             if sys_lang and sys_lang.startswith("en"):
                 lang_code = "en"
             else:

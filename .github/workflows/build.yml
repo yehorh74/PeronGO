@@ -40,31 +40,6 @@ jobs:
         run: |
           printf '%s' "$KEYSTORE_BASE64" | base64 -d > release.keystore
 
-      - name: Build Raw APK
-        env:
-          CI: "true"
-          FLET_NON_INTERACTIVE: "true"
-        run: |
-          flet build apk --python-version 3.12 --arch arm64-v8a \
-            --build-number ${{ github.run_number }} \
-            -o dist/apk
-
-      - name: Sign APK with Android SDK apksigner
-        env:
-          KS_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_PASS: ${{ secrets.KEY_PASSWORD || secrets.KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-        run: |
-          APKSIGNER=$(find $ANDROID_SDK_ROOT/build-tools -name apksigner | tail -n 1)
-          APK_FILE=$(find dist/apk -name "*.apk" | head -n 1)
-          
-          echo "Podpisywanie pliku: $APK_FILE"
-          $APKSIGNER sign --ks release.keystore \
-            --ks-key-alias "$KEY_ALIAS" \
-            --ks-pass env:KS_PASS \
-            --key-pass env:KEY_PASS \
-            "$APK_FILE"
-
       - name: Build Raw AAB
         env:
           CI: "true"
@@ -89,16 +64,9 @@ jobs:
             -keypass:env KEY_PASS \
             "$AAB_FILE" "$KEY_ALIAS"
 
-      - name: Verify APK Signature
-        run: |
-          APKSIGNER=$(find $ANDROID_SDK_ROOT/build-tools -name apksigner | tail -n 1)
-          APK_FILE=$(find dist/apk -name "*.apk" | head -n 1)
-          $APKSIGNER verify --print-certs "$APK_FILE"
-
       - name: Upload Mobile Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: perongo-mobile-builds
           path: |
-            dist/apk
             dist/aab

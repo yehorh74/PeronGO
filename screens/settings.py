@@ -1,5 +1,6 @@
 import flet as ft
 import textwrap
+import webbrowser
 
 from core.i18n import _, init_i18n
 
@@ -112,13 +113,13 @@ class SettingsScreen(ft.View):
         self.policy = ft.ListTile(
             leading=ft.Icons.POLICY,
             title=_("Polityka prywatności"),
-            on_click=lambda _: print("Dodać link, test")
+            on_click=lambda _: webbrowser.open("https://yehorh74.github.io/PeronGO/index.html#privacy")
         )
 
         self.terms = ft.ListTile(
             leading=ft.Icons.EDIT_DOCUMENT,
             title=_("Warunki korzystania"),
-            on_click=lambda _: print("Dodać link, test")
+            on_click=lambda _: webbrowser.open("https://yehorh74.github.io/PeronGO/index.html#terms")
         )
 
         self.version = ft.Container(
