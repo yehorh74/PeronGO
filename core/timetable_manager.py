@@ -15,7 +15,6 @@ except Exception:
 class TimetableManager:
     BASE_URL = "https://perongo-backend.onrender.com"
     
-    API_KEY_ANDROID = "AIzaSyA9bVoD8HSCoychV7Qgn1DJmeC6RreBl3o"
     API_KEY_WEB = "AIzaSyAcN5-1Lzq5le7K_nqSosTy9HiKXkQqwrA"
     
     _cached_token: str = None
@@ -30,8 +29,6 @@ class TimetableManager:
         
         if is_web:
             return os.getenv("FIREBASE_API_KEY_WEB", cls.API_KEY_WEB)
-        else:
-            return os.getenv("FIREBASE_API_KEY_ANDROID", cls.API_KEY_ANDROID)
 
     @classmethod
     async def _get_auth_token(cls) -> str:
