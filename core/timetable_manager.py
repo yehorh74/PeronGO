@@ -21,14 +21,16 @@ class TimetableManager:
 
     @classmethod
     def _is_android(cls) -> bool:
-        return sys.platform == "android" or platform.system() == "Android"
+        sys_plat = sys.platform.lower()
+        plat_sys = platform.system().lower()
+        has_android_env = "ANDROID_ARGUMENT" in os.environ or "ANDROID_STORAGE" in os.environ
+        
+        return "android" in sys_plat or "android" in plat_sys or has_android_env
 
     @classmethod
     def _get_api_key(cls) -> str:
         is_web = (sys.platform == "emscripten" or platform.system() == "Emscripten")
-        
-        if is_web:
-            return os.getenv("FIREBASE_API_KEY_WEB", cls.API_KEY_WEB)
+        return os.getenv("FIREBASE_API_KEY_WEB", cls.API_KEY_WEB)
 
     @classmethod
     async def _get_auth_token(cls) -> str:
@@ -43,11 +45,11 @@ class TimetableManager:
 
         if cls._is_android():
             url = f"{cls.BASE_URL}/api/v1/firebase-proxy/v1/accounts:signUp"
-            debug_print("[Auth Client] Próbuję pobrać token przez Android Proxy na Renderze...")
+            debug_print("[Auth Client] Wykryto Androida - pobieram token przez Android Proxy na Renderze...")
         else:
             api_key = cls._get_api_key()
             url = f"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={api_key}"
-            debug_print(f"[Auth Client] Próbuję pobrać nowy token bezpośrednio (klucz: {api_key[:10]}...)")
+            debug_print(f"[Auth Client] Wykryto PC/Web - pobieram token bezpośrednio (klucz: {api_key[:10]}...)")
         
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:
