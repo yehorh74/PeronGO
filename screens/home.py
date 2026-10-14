@@ -37,7 +37,7 @@ class HomeScreen(ft.View):
             debug_print(f"Błąd podczas wczytywania stacji: {ex}")
 
     def setup_ui(self):
-        self.info = ft.IconButton(ft.Icons.HELP, on_click=lambda _: webbrowser.open("https://yehorh74.github.io/PeronGO"))
+        self.info = ft.IconButton(ft.Icons.HELP, on_click=lambda _: webbrowser.open("https://yehorh74.github.io/PeronGO/#home"))
         self.settings_btn = ft.IconButton(ft.Icons.SETTINGS, on_click=lambda _: self.app.navigate_to("/settings"))
 
         self.appbar = ft.AppBar(

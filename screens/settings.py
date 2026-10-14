@@ -113,13 +113,13 @@ class SettingsScreen(ft.View):
         self.policy = ft.ListTile(
             leading=ft.Icons.POLICY,
             title=_("Polityka prywatności"),
-            on_click=lambda _: webbrowser.open("https://yehorh74.github.io/PeronGO/index.html#privacy")
+            on_click=lambda _: webbrowser.open("https://yehorh74.github.io/PeronGO/#privacy")
         )
 
         self.terms = ft.ListTile(
             leading=ft.Icons.EDIT_DOCUMENT,
             title=_("Warunki korzystania"),
-            on_click=lambda _: webbrowser.open("https://yehorh74.github.io/PeronGO/index.html#terms")
+            on_click=lambda _: webbrowser.open("https://yehorh74.github.io/PeronGO/#terms")
         )
 
         self.version = ft.Container(
