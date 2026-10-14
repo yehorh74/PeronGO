@@ -113,13 +113,13 @@ class SettingsScreen(ft.View):
         self.policy = ft.ListTile(
             leading=ft.Icons.POLICY,
             title=_("Polityka prywatności"),
-            on_click=lambda _: webbrowser.open("https://yehorh74.github.io/PeronGO/#privacy")
+            on_click=lambda e: self.page.run_task(self.open_privacy, e)
         )
 
         self.terms = ft.ListTile(
             leading=ft.Icons.EDIT_DOCUMENT,
             title=_("Warunki korzystania"),
-            on_click=lambda _: webbrowser.open("https://yehorh74.github.io/PeronGO/#terms")
+            on_click=lambda e: self.page.run_task(self.open_terms, e)
         )
 
         self.version = ft.Container(
@@ -177,6 +177,18 @@ class SettingsScreen(ft.View):
                 ]
             )
         ]
+
+    async def open_privacy(self, e):
+        await self.app.url_launcher.launch_url(
+            "https://yehorh74.github.io/PeronGO/#privacy",
+            mode=ft.LaunchMode.EXTERNAL_APPLICATION
+        )
+
+    async def open_terms(self, e):
+        await self.app.url_launcher.launch_url(
+            "https://yehorh74.github.io/PeronGO/#terms",
+            mode=ft.LaunchMode.EXTERNAL_APPLICATION
+        )
 
     async def handle_link_tap(self, e):
         await self.app.url_launcher.launch_url(e.data)

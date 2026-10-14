@@ -45,7 +45,7 @@ jobs:
           CI: "true"
           FLET_NON_INTERACTIVE: "true"
         run: |
-          flet build aab --python-version 3.12 --build-number 91 --arch arm64-v8a \
+          flet build aab --python-version 3.12 --build-number 92 --arch arm64-v8a \
             --build-number ${{ github.run_number }} \
             -o dist/aab
 

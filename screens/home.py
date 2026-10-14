@@ -36,8 +36,14 @@ class HomeScreen(ft.View):
         except Exception as ex:
             debug_print(f"Błąd podczas wczytywania stacji: {ex}")
 
+    async def open_home(self, e):
+        await self.app.url_launcher.launch_url(
+            "https://yehorh74.github.io/PeronGO/#home",
+            mode=ft.LaunchMode.EXTERNAL_APPLICATION
+        )
+
     def setup_ui(self):
-        self.info = ft.IconButton(ft.Icons.HELP, on_click=lambda _: webbrowser.open("https://yehorh74.github.io/PeronGO/#home"))
+        self.info = ft.IconButton(ft.Icons.HELP, on_click=lambda e: self.page.run_task(self.open_home, e))
         self.settings_btn = ft.IconButton(ft.Icons.SETTINGS, on_click=lambda _: self.app.navigate_to("/settings"))
 
         self.appbar = ft.AppBar(

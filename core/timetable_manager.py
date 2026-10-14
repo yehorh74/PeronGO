@@ -33,26 +33,33 @@ class TimetableManager:
     async def _get_auth_token(cls) -> str:
         dev_token = os.getenv("CLIENT_SIGNATURE")
         if dev_token:
+            debug_print("[Auth Client] Używam lokalnego CLIENT_SIGNATURE")
             return dev_token
 
         if cls._cached_token:
+            debug_print("[Auth Client] Używam zcachowanego tokenu Firebase")
             return cls._cached_token
 
         api_key = cls._get_api_key()
         url = f"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={api_key}"
+        debug_print(f"[Auth Client] Próbuję pobrać nowy token z Firebase (klucz: {api_key[:10]}...)")
         
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:
                 res = await client.post(url, json={"returnSecureToken": True})
+                debug_print(f"[Auth Client] Odpowiedź Firebase Identity Toolkit: Status {res.status_code}")
+                
                 if res.status_code == 200:
                     data = res.json()
                     cls._cached_token = data.get("idToken", "")
+                    debug_print(f"[Auth Client] Sukces! Pobrano token o długości: {len(cls._cached_token)}")
                     return cls._cached_token
                 else:
-                    debug_print(f"[Auth Error] Status {res.status_code}: {res.text}")
+                    debug_print(f"[Auth Client ERROR] Status {res.status_code}: {res.text}")
         except Exception as e:
-            debug_print(f"[Auth Error] Nie udało się pobrać tokenu anonimowego: {e}")
+            debug_print(f"[Auth Client EXCEPTION] Nie udało się pobrać tokenu: {e}")
 
+        debug_print("[Auth Client ERROR] ❌ Nie udało się uzyskać tokenu, zwracam pusty string!")
         return ""
 
     @classmethod
