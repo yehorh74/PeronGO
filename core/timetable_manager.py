@@ -21,6 +21,10 @@ class TimetableManager:
     _cached_token: str = None
 
     @classmethod
+    def _is_android(cls) -> bool:
+        return sys.platform == "android" or platform.system() == "Android"
+
+    @classmethod
     def _get_api_key(cls) -> str:
         is_web = (sys.platform == "emscripten" or platform.system() == "Emscripten")
         
@@ -40,14 +44,18 @@ class TimetableManager:
             debug_print("[Auth Client] Używam zcachowanego tokenu Firebase")
             return cls._cached_token
 
-        api_key = cls._get_api_key()
-        url = f"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={api_key}"
-        debug_print(f"[Auth Client] Próbuję pobrać nowy token z Firebase (klucz: {api_key[:10]}...)")
+        if cls._is_android():
+            url = f"{cls.BASE_URL}/api/v1/firebase-proxy/v1/accounts:signUp"
+            debug_print("[Auth Client] Próbuję pobrać token przez Android Proxy na Renderze...")
+        else:
+            api_key = cls._get_api_key()
+            url = f"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={api_key}"
+            debug_print(f"[Auth Client] Próbuję pobrać nowy token bezpośrednio (klucz: {api_key[:10]}...)")
         
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:
                 res = await client.post(url, json={"returnSecureToken": True})
-                debug_print(f"[Auth Client] Odpowiedź Firebase Identity Toolkit: Status {res.status_code}")
+                debug_print(f"[Auth Client] Odpowiedź: Status {res.status_code}")
                 
                 if res.status_code == 200:
                     data = res.json()

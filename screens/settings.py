@@ -1,6 +1,5 @@
 import flet as ft
 import textwrap
-import webbrowser
 
 from core.i18n import _, init_i18n
 

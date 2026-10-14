@@ -2,7 +2,6 @@ import json
 import os
 import flet as ft
 import datetime
-import webbrowser
 
 from core.i18n import _
 from core.logger import debug_print
