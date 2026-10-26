@@ -20,6 +20,16 @@ class ResultsScreen(ft.View):
         self.is_running = False
         self.is_paused = False  
 
+        now = datetime.now()
+        try:
+            time_part = self.time_str[:5] if len(self.time_str) >= 5 else self.time_str
+            user_dt = datetime.strptime(f"{self.date_str} {time_part}", "%Y-%m-%d %H:%M")
+        except Exception:
+            user_dt = now
+
+        time_diff = abs((user_dt - now).total_seconds())
+        self.is_custom_time = (time_diff > 120 or self.date_str != now.strftime("%Y-%m-%d"))
+
         super().__init__(route="/results")
         self.setup_ui()
 
@@ -31,27 +41,42 @@ class ResultsScreen(ft.View):
             center_title=True,
         )
 
-        self.live_time_text = ft.Text(self.time_str, weight=ft.FontWeight.BOLD)
+        initial_display_time = self.time_str if self.is_custom_time else datetime.now().strftime("%H:%M:%S")
+        self.live_time_text = ft.Text(initial_display_time, weight=ft.FontWeight.BOLD)
         self.last_update_text = ft.Text(_("Ostatnia aktualizacja: --:--:--"), size=11, color=ft.Colors.GREY_500)
+
+        header_controls = [
+            ft.Row(
+                controls=[
+                    ft.Icon(ft.Icons.CALENDAR_TODAY, size=16, color=ft.Colors.PRIMARY),
+                    ft.Text(f"{self.date_str}", weight=ft.FontWeight.BOLD),
+                    ft.Icon(ft.Icons.ACCESS_TIME, size=16, color=ft.Colors.PRIMARY),
+                    self.live_time_text,
+                ],
+                alignment=ft.MainAxisAlignment.CENTER,
+                spacing=10
+            )
+        ]
+
+        if self.is_custom_time:
+            self.real_time_text = ft.Text(_("Aktualny czas: --:--:--"), size=11, color=ft.Colors.GREY_500)
+            header_controls.append(
+                ft.Row(
+                    controls=[self.real_time_text],
+                    alignment=ft.MainAxisAlignment.CENTER
+                )
+            )
+
+        header_controls.append(
+            ft.Row(
+                controls=[self.last_update_text],
+                alignment=ft.MainAxisAlignment.CENTER
+            )
+        )
 
         self.header_info = ft.Container(
             content=ft.Column(
-                controls=[
-                    ft.Row(
-                        controls=[
-                            ft.Icon(ft.Icons.CALENDAR_TODAY, size=16, color=ft.Colors.PRIMARY),
-                            ft.Text(f"{self.date_str}", weight=ft.FontWeight.BOLD),
-                            ft.Icon(ft.Icons.ACCESS_TIME, size=16, color=ft.Colors.PRIMARY),
-                            self.live_time_text,
-                        ],
-                        alignment=ft.MainAxisAlignment.CENTER,
-                        spacing=10
-                    ),
-                    ft.Row(
-                        controls=[self.last_update_text],
-                        alignment=ft.MainAxisAlignment.CENTER
-                    )
-                ],
+                controls=header_controls,
                 spacing=4
             ),
             padding=10,
@@ -83,13 +108,12 @@ class ResultsScreen(ft.View):
         )
 
         self.controls = [
-            self.header_info,
+            self.header_info if hasattr(self, 'header_info') else self.header_info,
             self.main_content
         ]
 
     def did_mount(self):
         self.is_running = True
-        
         self.page.on_app_lifecycle_state_change = self._handle_lifecycle_change
 
         self.page.run_task(self._clock_loop)
@@ -113,9 +137,16 @@ class ResultsScreen(ft.View):
     async def _clock_loop(self):
         while self.is_running:
             now_str = datetime.now().strftime("%H:%M:%S")
-            if self.live_time_text.value != now_str:
-                self.live_time_text.value = now_str
-                self.live_time_text.update()
+            if self.is_custom_time:
+                if hasattr(self, "real_time_text") and self.real_time_text:
+                    real_time_display = _("Aktualny czas: {time}").format(time=now_str)
+                    if self.real_time_text.value != real_time_display:
+                        self.real_time_text.value = real_time_display
+                        self.real_time_text.update()
+            else:
+                if self.live_time_text.value != now_str:
+                    self.live_time_text.value = now_str
+                    self.live_time_text.update()
             await asyncio.sleep(1)
 
     async def _initial_load_and_start_loop(self):
@@ -129,8 +160,8 @@ class ResultsScreen(ft.View):
             if self.is_paused:
                 continue
 
-            current_time = datetime.now().strftime("%H:%M")
-            await self.refresh_timetable_data(time_override=current_time, is_initial=False)
+            fetch_time = self.time_str if self.is_custom_time else datetime.now().strftime("%H:%M")
+            await self.refresh_timetable_data(time_override=fetch_time, is_initial=False)
 
     async def refresh_timetable_data(self, time_override: str = None, is_initial: bool = False):
         is_web_platform = getattr(self.page, "web", False) if self.page else False
@@ -182,7 +213,6 @@ class ResultsScreen(ft.View):
             else:
                 self.results_list.update()
 
-            
             self.last_update_text.value = _("Ostatnia aktualizacja: {datetime}").format(datetime=datetime.now().strftime('%H:%M:%S'))
             self.last_update_text.color = ft.Colors.GREY_500
             self.last_update_text.update()
@@ -192,7 +222,6 @@ class ResultsScreen(ft.View):
         for item in data:
             delay = item.get("opoznienie", "no_delay")
             delay_color = ft.Colors.GREEN_600 if delay == "no_delay" else ft.Colors.RED_600
-
             delay_text = _("O czasie") if delay == "no_delay" else delay
             
             card = ft.Card(

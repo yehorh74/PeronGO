@@ -16,20 +16,26 @@ class App:
         self.page = page
         self.page.title = _("PeronGO")
         page.window.icon = "assets/icon.png"
-        self.version = "0.4.7"
-
-        page.locale_configuration = ft.LocaleConfiguration(
-            supported_locales=[ft.Locale("pl", "PL")],
-            current_locale=ft.Locale("pl", "PL"),
-        )
+        self.version = "0.5.0"
 
         self.url_launcher = ft.UrlLauncher()
-
-        init_i18n()
+        self.current_search_params = None
 
     async def init_async(self):
         prefs = ft.SharedPreferences()
         
+        try:
+            saved_lang = await prefs.get("language") or "pl"
+        except Exception:
+            saved_lang = "pl"
+
+        init_i18n(lang_code=saved_lang)
+
+        self.page.locale_configuration = ft.LocaleConfiguration(
+            supported_locales=[ft.Locale("pl", "PL"), ft.Locale("en", "US")],
+            current_locale=ft.Locale(saved_lang, "PL" if saved_lang == "pl" else "US")
+        )
+
         try:
             saved_theme = await prefs.get("theme_mode") or "system"
         except Exception:

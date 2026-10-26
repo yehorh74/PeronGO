@@ -200,11 +200,12 @@ class SettingsScreen(ft.View):
         self.language_radio_group.value = val
         self.app.page.run_task(self.change_language, None)
 
-    def _get_current_lang_code(self,) -> str:
+    def _get_current_lang_code(self) -> str:
         try:
             loc = getattr(self.app.page, "locale_configuration", None)
             if loc and loc.current_locale:
-                return "en" if loc.current_locale.language_code == "en" else "pl"
+                lang = loc.current_locale.language_code
+                return lang if lang in ["pl", "en"] else "pl"
         except Exception:
             pass
         return "pl"

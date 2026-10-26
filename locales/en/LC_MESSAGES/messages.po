@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PeronGO\n"
-"POT-Creation-Date: 2026-10-12 22:44+0200\n"
-"PO-Revision-Date: 2026-10-12 22:46+0200\n"
+"POT-Creation-Date: 2026-10-26 14:20+0100\n"
+"PO-Revision-Date: 2026-10-26 14:21+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -14,29 +14,29 @@ msgstr ""
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: core/timetable_manager.py:75
+#: core/timetable_manager.py:97
 #, python-brace-format
 msgid "Brak połączeń dla stacji '{station_name}' (ID: {station_id})."
 msgstr "No connections for station '{station_name}' (ID: {station_id})."
 
-#: core/timetable_manager.py:78
+#: core/timetable_manager.py:101
 msgid "Odmowa dostępu (403): Błąd autoryzacji Firebase."
 msgstr "Access Denied (403): Firebase authorization error."
 
-#: core/timetable_manager.py:80
+#: core/timetable_manager.py:105
 #, python-brace-format
 msgid "Błąd serwera HTTP {status_code}: {text}"
 msgstr "HTTP server error {status_code}: {text}"
 
-#: core/timetable_manager.py:83
+#: core/timetable_manager.py:111
 msgid "Błąd połączenia z backendem."
 msgstr "Error connecting to backend."
 
-#: core/timetable_manager.py:85
+#: core/timetable_manager.py:113
 msgid "Błąd przekroczenia czasu (Timeout)."
 msgstr "Timeout error."
 
-#: core/timetable_manager.py:87
+#: core/timetable_manager.py:115
 #, python-brace-format
 msgid ""
 "Błąd: {type_name}\n"
@@ -45,47 +45,47 @@ msgstr ""
 "Error: {type_name}\n"
 "{error_msg}"
 
-#: main.py:13 screens/home.py:43
+#: main.py:17 screens/home.py:64
 msgid "PeronGO"
 msgstr "PeronGO"
 
-#: screens/home.py:52
+#: screens/home.py:73
 msgid "Szukaj stacji..."
 msgstr "Search for stations..."
 
-#: screens/home.py:53
+#: screens/home.py:74
 msgid "Wybierz stację..."
 msgstr "Select a station..."
 
-#: screens/home.py:76 screens/home.py:242
+#: screens/home.py:97 screens/home.py:263
 msgid "OK"
 msgstr "OK"
 
-#: screens/home.py:77
+#: screens/home.py:98
 msgid "Anuluj"
 msgstr "Cancel"
 
-#: screens/home.py:78
+#: screens/home.py:99
 msgid "Niepoprawny czas"
 msgstr "Incorrect time"
 
-#: screens/home.py:95 screens/results_screen.py:26
+#: screens/home.py:116 screens/results_screen.py:37
 msgid "Odjazdy"
 msgstr "Departures"
 
-#: screens/home.py:96 screens/results_screen.py:26
+#: screens/home.py:117 screens/results_screen.py:37
 msgid "Przyjazdy"
 msgstr "Arrivals"
 
-#: screens/home.py:103
+#: screens/home.py:124
 msgid "Pokaż rozkład"
 msgstr "Show schedule"
 
-#: screens/home.py:110
+#: screens/home.py:131
 msgid "Rozkład jazdy na żywo"
 msgstr "Live timetable"
 
-#: screens/home.py:117
+#: screens/home.py:138
 msgid ""
 "Wyszukaj stację, wybierz datę i sprawdź aktualne odjazdy lub przyjazdy "
 "pociągów."
@@ -93,19 +93,19 @@ msgstr ""
 "Search for a station, select a date and check current train departures or "
 "arrivals."
 
-#: screens/home.py:187
+#: screens/home.py:208
 msgid "Brak stacji"
 msgstr "No stations"
 
-#: screens/home.py:187
+#: screens/home.py:208
 msgid "Musisz wpisać lub wybrać stację z listy."
 msgstr "You must enter or select a station from the list."
 
-#: screens/home.py:195
+#: screens/home.py:216
 msgid "Nie znaleziono stacji"
 msgstr "No stations found"
 
-#: screens/home.py:196
+#: screens/home.py:217
 #, python-brace-format
 msgid ""
 "Stacja '{raw_station}' nie znajduje się w naszej bazie. Wybierz stację z "
@@ -114,50 +114,59 @@ msgstr ""
 "The station '{raw_station}' is not in our database. Please select a station "
 "from the suggested list."
 
-#: screens/results_screen.py:34
+#: screens/results_screen.py:46
 msgid "Ostatnia aktualizacja: --:--:--"
 msgstr "Last update: --:--:--"
 
-#: screens/results_screen.py:71
+#: screens/results_screen.py:62
+msgid "Aktualny czas: --:--:--"
+msgstr "Current time: --:--:--"
+
+#: screens/results_screen.py:97
 msgid "Pobieranie rozkładu z sieci..."
 msgstr "Downloading a timetable from the web..."
 
-#: screens/results_screen.py:152
+#: screens/results_screen.py:142
+#, python-brace-format
+msgid "Aktualny czas: {time}"
+msgstr "Current time: {time}"
+
+#: screens/results_screen.py:184
 msgid "Brak połączeń dla wybranej stacji."
 msgstr "No connections for the selected station."
 
-#: screens/results_screen.py:171
+#: screens/results_screen.py:203
 #, python-brace-format
 msgid "Błąd odświeżania ({datetime})"
 msgstr "Refresh error ({datetime})"
 
-#: screens/results_screen.py:185
+#: screens/results_screen.py:216
 #, python-brace-format
 msgid "Ostatnia aktualizacja: {datetime}"
 msgstr "Last update: {datetime}"
 
-#: screens/results_screen.py:195
+#: screens/results_screen.py:225
 msgid "O czasie"
 msgstr "On time"
 
-#: screens/results_screen.py:203
+#: screens/results_screen.py:233
 msgid "--:--"
 msgstr "--:--"
 
-#: screens/results_screen.py:212 screens/results_screen.py:213
+#: screens/results_screen.py:242 screens/results_screen.py:243
 msgid "Brak informacji"
 msgstr "No information available"
 
-#: screens/results_screen.py:213
+#: screens/results_screen.py:243
 #, python-brace-format
 msgid "Pociąg: {pociag}"
 msgstr "Train: {pociag}"
 
-#: screens/results_screen.py:220
+#: screens/results_screen.py:250
 msgid "Peron/Tor"
 msgstr "Platform/Track"
 
-#: screens/results_screen.py:221
+#: screens/results_screen.py:251
 msgid "-/-"
 msgstr "-/-"
 
@@ -238,8 +247,8 @@ msgstr ""
 "        * **[Firebase / Google Identity](https://firebase.google.com)** — "
 "Google Cloud Authentication Service\n"
 "        * **[Open Railway Data (PKP PLK)](https://pdp-api.plk-sa.pl/)** — "
-"Train timetable and delay data retrieved from publicly available "
-"information interfaces.\n"
+"Train timetable and delay data retrieved from publicly available information "
+"interfaces.\n"
 "\n"
 "        ---\n"
 "        *This application is not an official PKP PLK application. All "

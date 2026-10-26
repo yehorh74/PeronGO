@@ -26,10 +26,24 @@ class HomeScreen(ft.View):
                 with open(json_path, "r", encoding="utf-8") as f:
                     data = json.load(f)
                     if isinstance(data, dict) and "stations" in data:
-                        self.stations = data["stations"]
+                        raw_stations = data["stations"]
                     else:
-                        self.stations = data
-                    debug_print(f"Pomyślnie załadowano stacje. Liczba wpisów: {len(self.stations)}")
+                        raw_stations = data
+                    
+                    excluded_keywords = ["Kharkiv-Pasazhyrskyi", "Khmelnytskyi", "Poltava-Kyivska", "Piatykhatky", "Kyiv-Pasazhyrskyi", "Znamianka", "Kamianske",
+                                         "Berlin", "BERLIN -", "Dresden", "Bischofswerda", "Frankfurt", "Frydlant nad Ostravici", "Frenstat pod Radhostem", "Attnang-Puchheim",
+                                         "Alt Rosenthal", "Praha Hlavni Nadrazi", "Praha-Liben", "Bratislava Hlavna Stanica", "Dobratice-Vojkovice", "Goerlitz", "Gersdorf(Goerlitz)",
+                                         "Angermuende", "Schoenow(Angerm)", "Goerlitz-Rauschwalde", "Hirschfelde", "Kubschuetz", "Suchdol nad Odrou", "Guestrow", "Blumenhagen", "Gorgast",
+                                         "Seitschen", "Cesky Tesin", "Moelln(Meckl)"] 
+                    
+                    self.stations = []
+                    for st in raw_stations:
+                        name = st["name"] if isinstance(st, dict) else str(st)
+                        if any(keyword in name for keyword in excluded_keywords):
+                            continue
+                        self.stations.append(st)
+
+                    debug_print(f"Pomyślnie załadowano i przefiltrowano stacje. Liczba wpisów: {len(self.stations)}")
             else:
                 debug_print(f"Brak pliku stacji pod ścieżką: {json_path}")
         except Exception as ex:
@@ -287,27 +301,23 @@ class HomeScreen(ft.View):
         debug_print(f"Zmieniono typ wyszukiwania na: {self.search_type}")
 
     async def open_search_view(self, e):
-        query = (self.stations_search.value or "").strip().lower()
-        if len(query) >= 2:
-            await self.stations_search.open_view()
+        await self.generate_station_list(query="")
+        await self.stations_search.open_view()
 
     async def handle_search_change(self, e):
         if self.stations_search.bar_border_side.color == ft.Colors.RED:
             self.highlight_search_error(False)
-        query = e.data.strip().lower()
+        query = (e.data or "").strip().lower()
 
-        if len(query) < 2:
-            self.stations_search.controls = []
-            self.stations_search.close_view(self.stations_search.value)
-            return
-
+        await self.generate_station_list(query=query)
         await self.stations_search.open_view()
 
+    async def generate_station_list(self, query: str):
         filtered_results = []
         for station in self.stations:
             station_name = station["name"] if isinstance(station, dict) else str(station)
             
-            if query in station_name.lower():
+            if not query or query in station_name.lower():
                 filtered_results.append(
                     ft.ListTile(
                         leading=ft.Icon(ft.Icons.LOCATION_ON),
