@@ -1,6 +1,6 @@
 import os
 
-PRODUCTION = True
+PRODUCTION = False
 
 def debug_print(*args, **kwargs):
     if not PRODUCTION:

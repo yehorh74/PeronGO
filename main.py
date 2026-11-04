@@ -1,6 +1,7 @@
 import os
 import warnings
 import flet as ft
+import flet_ads as fta
 
 from screens.home import HomeScreen
 from screens.settings import SettingsScreen
@@ -16,10 +17,17 @@ class App:
         self.page = page
         self.page.title = _("PeronGO")
         page.window.icon = "assets/icon.png"
-        self.version = "0.5.0"
+        self.version = "0.6.0"
 
         self.url_launcher = ft.UrlLauncher()
         self.current_search_params = None
+
+        self.supported = not page.web and page.platform.is_mobile()
+        if self.supported:
+            self.consent_manager = fta.ConsentManager()
+            page.services.append(self.consent_manager)
+        else:
+            self.consent_manager = None
 
     async def init_async(self):
         prefs = ft.SharedPreferences()
@@ -47,11 +55,38 @@ class App:
             self.page.theme_mode = ft.ThemeMode.DARK
         else:
             self.page.theme_mode = ft.ThemeMode.SYSTEM
+
+        if self.supported and self.consent_manager:
+            await self.init_consent()
         
         self.page.on_route_change = self.route_change
         
         self.page.route = "/home"
         self.route_change(None)
+
+    async def init_consent(self):
+        try:
+            await self.consent_manager.request_consent_info_update(
+                fta.ConsentRequestParameters(
+                    consent_debug_settings=fta.ConsentDebugSettings(
+                        debug_geography=fta.DebugGeography.EEA,
+                    ),
+                )
+            )
+            await self.consent_manager.load_and_show_consent_form_if_required()
+            
+            can_request = await self.consent_manager.can_request_ads()
+            debug_print(f"[CONSENT] Czy można zażądać reklam: {can_request}")
+            
+        except Exception as ex:
+            debug_print(f"[CONSENT ERROR] Błąd podczas pobierania zgody: {ex}")
+
+    async def show_privacy_options_form(self):
+        if self.supported and self.consent_manager:
+            try:
+                await self.consent_manager.show_privacy_options_form()
+            except Exception as ex:
+                debug_print(f"[PRIVACY FORM ERROR]: {ex}")
 
     def navigate_to(self, route_name: str):
         self.page.route = route_name

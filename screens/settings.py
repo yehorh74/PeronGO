@@ -1,6 +1,7 @@
 import flet as ft
 import textwrap
 
+from core.logger import debug_print
 from core.i18n import _, init_i18n
 
 class SettingsScreen(ft.View):
@@ -121,6 +122,12 @@ class SettingsScreen(ft.View):
             on_click=lambda e: self.page.run_task(self.open_terms, e)
         )
 
+        self.consent = ft.ListTile(
+            leading=ft.Icons.PRIVACY_TIP_OUTLINED,
+            title=_("Zarządzaj zgodami (RODO / Prywatność)"),
+            on_click=lambda e: self.page.run_task(self.show_privacy_options_form, e)
+        )
+
         self.version = ft.Container(
             content=ft.Text(value=self.app.version),
             alignment=ft.Alignment.CENTER,  
@@ -170,12 +177,20 @@ class SettingsScreen(ft.View):
                     self.app_info,
                     self.policy,
                     self.terms,
+                    self.consent,
                     ft.Divider(),
                     self.licenses_card,
                     self.version
                 ]
             )
         ]
+
+    async def show_privacy_options_form(self, e):
+        if self.app.supported and self.app.consent_manager:
+            try:
+                await self.app.consent_manager.show_privacy_options_form()
+            except Exception as ex:
+                debug_print(f"[PRIVACY FORM ERROR]: {ex}")
 
     async def open_privacy(self, e):
         await self.app.url_launcher.launch_url(

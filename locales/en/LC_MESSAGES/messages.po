@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PeronGO\n"
-"POT-Creation-Date: 2026-10-26 14:20+0100\n"
-"PO-Revision-Date: 2026-10-26 14:21+0100\n"
+"POT-Creation-Date: 2026-11-04 15:52+0100\n"
+"PO-Revision-Date: 2026-11-04 15:52+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -45,7 +45,7 @@ msgstr ""
 "Error: {type_name}\n"
 "{error_msg}"
 
-#: main.py:17 screens/home.py:64
+#: main.py:18 screens/home.py:64
 msgid "PeronGO"
 msgstr "PeronGO"
 
@@ -170,51 +170,55 @@ msgstr "Platform/Track"
 msgid "-/-"
 msgstr "-/-"
 
-#: screens/settings.py:18
+#: screens/settings.py:19
 msgid "Ustawienia"
 msgstr "Settings"
 
-#: screens/settings.py:27
+#: screens/settings.py:28
 msgid "Język"
 msgstr "Language"
 
-#: screens/settings.py:34
+#: screens/settings.py:35
 msgid "Polski"
 msgstr "Polish"
 
-#: screens/settings.py:41
+#: screens/settings.py:42
 msgid "Angielski"
 msgstr "English "
 
-#: screens/settings.py:67
+#: screens/settings.py:68
 msgid "Motyw"
 msgstr "Theme"
 
-#: screens/settings.py:74
+#: screens/settings.py:75
 msgid "Systemowy"
 msgstr "System"
 
-#: screens/settings.py:81
+#: screens/settings.py:82
 msgid "Jasny"
 msgstr "Light"
 
-#: screens/settings.py:88
+#: screens/settings.py:89
 msgid "Ciemny"
 msgstr "Dark"
 
-#: screens/settings.py:107
+#: screens/settings.py:108
 msgid "Informacja o aplikacji"
 msgstr "Application Information"
 
-#: screens/settings.py:114
+#: screens/settings.py:115
 msgid "Polityka prywatności"
 msgstr "Privacy Policy"
 
-#: screens/settings.py:120
+#: screens/settings.py:121
 msgid "Warunki korzystania"
 msgstr "Terms of Use"
 
-#: screens/settings.py:130
+#: screens/settings.py:127
+msgid "Zarządzaj zgodami (RODO / Prywatność)"
+msgstr "Manage consents (GDPR / Privacy)"
+
+#: screens/settings.py:137
 msgid ""
 "\n"
 "        ### 📜 Licencje i Źródła Danych / Licenses & Data Sources\n"
