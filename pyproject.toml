@@ -12,6 +12,7 @@ authors = [{ name = "Yehor Horin", email = "danedred15@gmail.com" }]
 
 dependencies = [
     "flet==0.86.5",
+    "flet-ads",
     "httpx",
     "python-dotenv"
 ]
