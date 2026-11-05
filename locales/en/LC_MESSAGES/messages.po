@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PeronGO\n"
-"POT-Creation-Date: 2026-11-04 15:52+0100\n"
-"PO-Revision-Date: 2026-11-04 15:52+0100\n"
+"POT-Creation-Date: 2026-11-05 21:45+0100\n"
+"PO-Revision-Date: 2026-11-05 21:46+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -45,47 +45,47 @@ msgstr ""
 "Error: {type_name}\n"
 "{error_msg}"
 
-#: main.py:18 screens/home.py:64
+#: main.py:18 screens/home.py:84
 msgid "PeronGO"
 msgstr "PeronGO"
 
-#: screens/home.py:73
+#: screens/home.py:93
 msgid "Szukaj stacji..."
 msgstr "Search for stations..."
 
-#: screens/home.py:74
+#: screens/home.py:94
 msgid "Wybierz stację..."
 msgstr "Select a station..."
 
-#: screens/home.py:97 screens/home.py:263
+#: screens/home.py:117 screens/home.py:342
 msgid "OK"
 msgstr "OK"
 
-#: screens/home.py:98
+#: screens/home.py:118
 msgid "Anuluj"
 msgstr "Cancel"
 
-#: screens/home.py:99
+#: screens/home.py:119
 msgid "Niepoprawny czas"
 msgstr "Incorrect time"
 
-#: screens/home.py:116 screens/results_screen.py:37
+#: screens/home.py:136 screens/results_screen.py:38
 msgid "Odjazdy"
 msgstr "Departures"
 
-#: screens/home.py:117 screens/results_screen.py:37
+#: screens/home.py:137 screens/results_screen.py:38
 msgid "Przyjazdy"
 msgstr "Arrivals"
 
-#: screens/home.py:124
+#: screens/home.py:144
 msgid "Pokaż rozkład"
 msgstr "Show schedule"
 
-#: screens/home.py:131
+#: screens/home.py:151
 msgid "Rozkład jazdy na żywo"
 msgstr "Live timetable"
 
-#: screens/home.py:138
+#: screens/home.py:158
 msgid ""
 "Wyszukaj stację, wybierz datę i sprawdź aktualne odjazdy lub przyjazdy "
 "pociągów."
@@ -93,19 +93,19 @@ msgstr ""
 "Search for a station, select a date and check current train departures or "
 "arrivals."
 
-#: screens/home.py:208
+#: screens/home.py:287
 msgid "Brak stacji"
 msgstr "No stations"
 
-#: screens/home.py:208
+#: screens/home.py:287
 msgid "Musisz wpisać lub wybrać stację z listy."
 msgstr "You must enter or select a station from the list."
 
-#: screens/home.py:216
+#: screens/home.py:295
 msgid "Nie znaleziono stacji"
 msgstr "No stations found"
 
-#: screens/home.py:217
+#: screens/home.py:296
 #, python-brace-format
 msgid ""
 "Stacja '{raw_station}' nie znajduje się w naszej bazie. Wybierz stację z "
@@ -114,59 +114,67 @@ msgstr ""
 "The station '{raw_station}' is not in our database. Please select a station "
 "from the suggested list."
 
-#: screens/results_screen.py:46
+#: screens/results_screen.py:59
 msgid "Ostatnia aktualizacja: --:--:--"
 msgstr "Last update: --:--:--"
 
-#: screens/results_screen.py:62
+#: screens/results_screen.py:75
 msgid "Aktualny czas: --:--:--"
 msgstr "Current time: --:--:--"
 
-#: screens/results_screen.py:97
+#: screens/results_screen.py:110
 msgid "Pobieranie rozkładu z sieci..."
 msgstr "Downloading a timetable from the web..."
 
+#: screens/results_screen.py:137
+msgid "Dodano do szybkiego wyszukiwania"
+msgstr "Added to quick search"
+
 #: screens/results_screen.py:142
+msgid "Usunięto z szybkiego wyszukiwania"
+msgstr "Removed from quick search"
+
+#: screens/results_screen.py:199
 #, python-brace-format
 msgid "Aktualny czas: {time}"
 msgstr "Current time: {time}"
 
-#: screens/results_screen.py:184
+#: screens/results_screen.py:241
 msgid "Brak połączeń dla wybranej stacji."
 msgstr "No connections for the selected station."
 
-#: screens/results_screen.py:203
+#: screens/results_screen.py:260
 #, python-brace-format
 msgid "Błąd odświeżania ({datetime})"
 msgstr "Refresh error ({datetime})"
 
-#: screens/results_screen.py:216
+#: screens/results_screen.py:273
 #, python-brace-format
 msgid "Ostatnia aktualizacja: {datetime}"
 msgstr "Last update: {datetime}"
 
-#: screens/results_screen.py:225
+#: screens/results_screen.py:282
 msgid "O czasie"
 msgstr "On time"
 
-#: screens/results_screen.py:233
+#: screens/results_screen.py:290
 msgid "--:--"
 msgstr "--:--"
 
-#: screens/results_screen.py:242 screens/results_screen.py:243
+#: screens/results_screen.py:299 screens/results_screen.py:300
 msgid "Brak informacji"
 msgstr "No information available"
 
-#: screens/results_screen.py:243
+#: screens/results_screen.py:300
 #, python-brace-format
 msgid "Pociąg: {pociag}"
 msgstr "Train: {pociag}"
 
-#: screens/results_screen.py:250
+#: screens/results_screen.py:307
 msgid "Peron/Tor"
 msgstr "Platform/Track"
 
-#: screens/results_screen.py:251
+#: screens/results_screen.py:308
 msgid "-/-"
 msgstr "-/-"
 

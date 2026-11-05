@@ -22,6 +22,9 @@ class HomeScreen(ft.View):
         self.setup_ui()
         self.load_stations()
 
+    def did_mount(self):
+        self.page.run_task(self.update_quick_stations_ui)
+
     def load_stations(self):
         json_path = os.path.join(os.path.dirname(__file__), "..", "files", "stations.json")
         
@@ -54,7 +57,7 @@ class HomeScreen(ft.View):
             debug_print(f"Błąd podczas wczytywania stacji: {ex}")
 
     async def handle_search_submit_ads(self, e):
-        should_show_ad = random.random() < 0.7 
+        should_show_ad = random.random() < 0.5 
         
         if not self.app.page.web and self.app.page.platform.is_mobile() and should_show_ad:
             debug_print("Losowanie: Wyświetlam reklamę Interstitial przed przejściem do wyników.")
@@ -185,10 +188,16 @@ class HomeScreen(ft.View):
             run_spacing=10
         )
 
+        self.quick_stations_row = ft.Row(
+            scroll=ft.ScrollMode.AUTO,
+            spacing=8,
+        )
+
         search_block = ft.Column(
             width=500, 
             controls=[
                 header_container,
+                self.quick_stations_row,
                 self.stations_search,
                 options_row,
                 self.submit_btn
@@ -225,6 +234,39 @@ class HomeScreen(ft.View):
         )
 
         self.controls = [self.main_layout]
+
+    async def update_quick_stations_ui(self):
+        page = getattr(self.app, "page", None)
+        if not page:
+            return
+
+        favorites = await self.app.prefs.get("favorites_list") 
+        debug_print(f"[DEBUG] Pobrane ulubione stacje: {favorites}")
+
+        self.quick_stations_row.controls.clear()
+
+        if not favorites:
+            self.quick_stations_row.visible = False
+            return
+
+        self.quick_stations_row.visible = True
+
+        for station in favorites:
+            chip = ft.Chip(
+                label=ft.Text(station),
+                leading=ft.Icon(ft.Icons.STAR, color=ft.Colors.AMBER),
+                on_click=lambda e, s=station: self.select_quick_station(s),
+            )
+            self.quick_stations_row.controls.append(chip)
+
+        try:
+            self.quick_stations_row.update()
+        except Exception:
+            pass
+
+    def select_quick_station(self, station_name: str):
+        self.stations_search.value = station_name
+        self.stations_search.update()
 
     def get_station_object(self, input_name: str) -> dict | None:
         search_term = input_name.strip().lower()

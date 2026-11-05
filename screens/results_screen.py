@@ -16,6 +16,7 @@ class ResultsScreen(ft.View):
         self.date_str = date_str
         self.time_str = time_str
         self.is_arrival = (search_type == "arrivals")
+        self.favorite_key = f"fav_station_{self.station_name}"
         
         self.is_running = False
         self.is_paused = False  
@@ -37,8 +38,20 @@ class ResultsScreen(ft.View):
         title_type = _("Przyjazdy") if self.is_arrival else _("Odjazdy")
         self.appbar = ft.AppBar(
             leading=ft.IconButton(ft.Icons.ARROW_BACK, on_click=lambda _: self.app.navigate_to("/home")),
-            title=ft.Text(f"{title_type}: {self.station_name}"),
+            title=ft.Text(
+                f"{title_type}: {self.station_name}",
+                max_lines=2,  
+            ),
             center_title=True,
+            toolbar_height=80,
+            actions=[
+                ft.IconButton(
+                    icon=ft.Icons.ADD,
+                    selected_icon=ft.Icons.CHECK,  
+                    tooltip="Szybkie wyszukiwanie",
+                    on_click=self.toggle_quick_search,
+                )
+            ],
         )
 
         initial_display_time = self.time_str if self.is_custom_time else datetime.now().strftime("%H:%M:%S")
@@ -112,12 +125,56 @@ class ResultsScreen(ft.View):
             self.main_content
         ]
 
+    async def toggle_quick_search(self, e: ft.ControlEvent):
+        btn = e.control
+        btn.selected = not btn.selected
+        btn.update()
+
+        page = e.page
+
+        if btn.selected:
+            await self.app.prefs.set(self.favorite_key, True)
+            msg = _("Dodano do szybkiego wyszukiwania")
+
+            await self.add_to_global_list(page)
+        else:
+            await self.app.prefs.remove(self.favorite_key)
+            msg = _("Usunięto z szybkiego wyszukiwania")
+
+            await self.remove_from_global_list(page)
+
+        page.show_dialog(ft.SnackBar(content=ft.Text(msg), duration=2000))
+
+    async def add_to_global_list(self, page: ft.Page):
+        favorites = await self.app.prefs.get("favorites_list") or []
+        debug_print(f"[DEBUG] Aktualna lista ulubionych stacji: {favorites}")
+        if self.station_name not in favorites:
+            favorites.append(self.station_name)
+            await self.app.prefs.set("favorites_list", favorites)
+
+    async def remove_from_global_list(self, page: ft.Page):
+        favorites = await self.app.prefs.get("favorites_list") or []
+        if self.station_name in favorites:
+            favorites.remove(self.station_name)
+            await self.app.prefs.set("favorites_list", favorites)
+
     def did_mount(self):
         self.is_running = True
         self.page.on_app_lifecycle_state_change = self._handle_lifecycle_change
 
         self.page.run_task(self._clock_loop)
-        self.page.run_task(self._initial_load_and_start_loop)
+        self.page.run_task(self._init_data_and_tasks)
+
+    async def _init_data_and_tasks(self):
+        page = self.appbar.page or self.page
+        if page:
+            is_saved = await self.app.prefs.get(self.favorite_key) or False
+            if self.appbar.actions:
+                btn = self.appbar.actions[0]
+                btn.selected = is_saved
+                btn.update()
+
+        await self._initial_load_and_start_loop()
 
     def will_unmount(self):
         self.is_running = False

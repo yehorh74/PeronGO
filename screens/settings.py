@@ -235,8 +235,7 @@ class SettingsScreen(ft.View):
         else:
             self.app.page.theme_mode = ft.ThemeMode.SYSTEM
 
-        prefs = ft.SharedPreferences()
-        await prefs.set("theme_mode", theme_val)
+        await self.app.prefs.set("theme_mode", theme_val)
         
         self.app.page.update()
 
@@ -249,8 +248,7 @@ class SettingsScreen(ft.View):
                 current_locale=ft.Locale(lang_val, "PL" if lang_val == "pl" else "US")
             )
 
-        prefs = ft.SharedPreferences()
-        await prefs.set("language", lang_val)
+        await self.app.prefs.set("language", lang_val)
 
         init_i18n(lang_code=lang_val)
 

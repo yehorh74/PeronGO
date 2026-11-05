@@ -17,8 +17,9 @@ class App:
         self.page = page
         self.page.title = _("PeronGO")
         page.window.icon = "assets/icon.png"
-        self.version = "0.6.1"
+        self.version = "1.0.0"
 
+        self.prefs = ft.SharedPreferences()
         self.url_launcher = ft.UrlLauncher()
         self.current_search_params = None
 
@@ -29,11 +30,9 @@ class App:
         else:
             self.consent_manager = None
 
-    async def init_async(self):
-        prefs = ft.SharedPreferences()
-        
+    async def init_async(self):      
         try:
-            saved_lang = await prefs.get("language") or "pl"
+            saved_lang = await self.prefs.get("language") or "pl"
         except Exception:
             saved_lang = "pl"
 
@@ -45,7 +44,7 @@ class App:
         )
 
         try:
-            saved_theme = await prefs.get("theme_mode") or "system"
+            saved_theme = await self.prefs.get("theme_mode") or "system"
         except Exception:
             saved_theme = "system"
 

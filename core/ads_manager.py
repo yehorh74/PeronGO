@@ -5,8 +5,8 @@ from core.logger import debug_print
 
 ids = {
     ft.PagePlatform.ANDROID: {
-        "banner": "ca-app-pub-3940256099942544/9214589741",
-        "interstitial": "ca-app-pub-3940256099942544/1033173712",
+        "banner": "ca-app-pub-5022715823578219/1629350740",
+        "interstitial": "ca-app-pub-5022715823578219/5873069271",
     }
 }
 
@@ -16,7 +16,7 @@ class AdsManager:
 
     def get_new_banner_ad(self) -> fta.BannerAd:
         platform = self.app.page.platform
-        banner_id = ids.get(platform, {}).get("banner", "ca-app-pub-3940256099942544/9214589741")
+        banner_id = ids.get(platform, {}).get("ca-app-pub-5022715823578219/1629350740")
         
         return fta.BannerAd(
             unit_id=banner_id,
@@ -33,7 +33,7 @@ class AdsManager:
 
     def show_interstitial_ad(self):
         platform = self.app.page.platform
-        interstitial_id = ids.get(platform, {}).get("interstitial", "ca-app-pub-3940256099942544/1033173712")
+        interstitial_id = ids.get(platform, {}).get("interstitial", "ca-app-pub-5022715823578219/5873069271")
 
         async def show_iad(e: ft.Event[fta.InterstitialAd]):
             try:
