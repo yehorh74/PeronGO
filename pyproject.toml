@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 authors = [{ name = "Yehor Horin", email = "danedred15@gmail.com" }]
 
 dependencies = [
-    "flet==0.86.5",
+    "flet==1.1.0",
     "flet-ads",
     "httpx",
     "python-dotenv"
@@ -46,7 +46,7 @@ startup_message = "Uruchamianie..."
 
 [tool.flet.flutter.pubspec.dependency_overrides]
 flet = { git = { url = "https://github.com/flet-dev/flet.git", ref = "main", path = "packages/flet" } }
-jni = "^1.1.0"
+#jni = "^1.1.0"
 
 [tool.flet.android.meta_data]
 "com.google.android.gms.ads.APPLICATION_ID" = "ca-app-pub-5022715823578219~9261580132"
