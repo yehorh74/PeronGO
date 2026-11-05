@@ -2,14 +2,18 @@ import json
 import os
 import flet as ft
 import datetime
+import random
 
 from core.i18n import _
 from core.logger import debug_print
+from core.ads_manager import AdsManager
 
 class HomeScreen(ft.View):
     def __init__(self, app):
         self.app = app
         super().__init__(route="/home")
+
+        self.ads_manager = AdsManager(app)
 
         self.selected_date = datetime.datetime.now().strftime("%Y-%m-%d")
         self.selected_time = datetime.datetime.now().strftime("%H:%M")
@@ -48,6 +52,19 @@ class HomeScreen(ft.View):
                 debug_print(f"Brak pliku stacji pod ścieżką: {json_path}")
         except Exception as ex:
             debug_print(f"Błąd podczas wczytywania stacji: {ex}")
+
+    async def handle_search_submit_ads(self, e):
+        should_show_ad = random.random() < 0.7 
+        
+        if not self.app.page.web and self.app.page.platform.is_mobile() and should_show_ad:
+            debug_print("Losowanie: Wyświetlam reklamę Interstitial przed przejściem do wyników.")
+            try:
+                self.ads_manager.show_interstitial_ad()
+            except Exception as ex:
+                debug_print(f"Nie udało się pokazać reklamy: {ex}")
+
+        debug_print("Przechodzę do wyników wyszukiwania...")
+        await self.handle_search_submit(e)
 
     async def open_home(self, e):
         await self.app.url_launcher.launch_url(
@@ -124,7 +141,7 @@ class HomeScreen(ft.View):
             content=_("Pokaż rozkład"),
             icon=ft.Icons.SEARCH,
             width=float("inf"),  
-            on_click=self.handle_search_submit,
+            on_click=self.handle_search_submit_ads,
         )
 
         self.title = ft.Text(
@@ -187,7 +204,27 @@ class HomeScreen(ft.View):
             content=search_block
         )
 
-        self.controls = [self.centered_container]
+        is_mobile = self.app.supported and self.app.page.platform.is_mobile()
+        
+        main_column_controls = [self.centered_container]
+        
+        if is_mobile:
+            self.banner_ad = self.ads_manager.get_new_banner_ad()
+            main_column_controls.append(
+                ft.Container(
+                    content=self.banner_ad,
+                    alignment=ft.Alignment.BOTTOM_CENTER,
+                    padding=ft.Padding.only(bottom=5)
+                )
+            )
+
+        self.main_layout = ft.Column(
+            expand=True,
+            controls=main_column_controls,
+            alignment=ft.MainAxisAlignment.SPACE_BETWEEN
+        )
+
+        self.controls = [self.main_layout]
 
     def get_station_object(self, input_name: str) -> dict | None:
         search_term = input_name.strip().lower()
@@ -197,7 +234,7 @@ class HomeScreen(ft.View):
                     return station
         return None
 
-    def handle_search_submit(self, e):
+    async def handle_search_submit(self, e):
         raw_station = self.stations_search.value.strip() if self.stations_search.value else ""
         date = getattr(self, "selected_date", None)
         time = getattr(self, "selected_time", None)
