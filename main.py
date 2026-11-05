@@ -17,7 +17,7 @@ class App:
         self.page = page
         self.page.title = _("PeronGO")
         page.window.icon = "assets/icon.png"
-        self.version = "0.6.0"
+        self.version = "0.6.1"
 
         self.url_launcher = ft.UrlLauncher()
         self.current_search_params = None
