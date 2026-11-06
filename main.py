@@ -9,7 +9,6 @@ from screens.results_screen import ResultsScreen
 
 from core.i18n import init_i18n, _
 from core.logger import debug_print
-from core.ads_manager import AdsManager
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
@@ -18,9 +17,8 @@ class App:
         self.page = page
         self.page.title = _("PeronGO")
         page.window.icon = "assets/icon.png"
-        self.version = "1.0.1"
+        self.version = "1.0.2"
 
-        self.ads_manager = AdsManager(self)
         self.prefs = ft.SharedPreferences()
         self.url_launcher = ft.UrlLauncher()
         self.current_search_params = None
@@ -59,13 +57,6 @@ class App:
 
         if self.supported and self.consent_manager:
             await self.init_consent()
-
-        if self.supported:
-            try:
-                self.ads_manager.preload_interstitial_ad()
-                debug_print("Zainicjalizowano preładowanie reklam pełnoekranowych.")
-            except Exception as ex:
-                debug_print(f"Błąd inicjalizacji reklam: {ex}")
         
         self.page.on_route_change = self.route_change
         

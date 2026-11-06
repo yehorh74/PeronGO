@@ -57,7 +57,7 @@ class HomeScreen(ft.View):
             debug_print(f"Błąd podczas wczytywania stacji: {ex}")
 
     async def handle_search_submit_ads(self, e):
-        should_show_ad = random.random() < 0.5 
+        should_show_ad = random.random() < 0.6 
         
         if not self.app.page.web and self.app.page.platform.is_mobile() and should_show_ad:
             debug_print("Losowanie: Wyświetlam reklamę Interstitial przed przejściem do wyników.")
